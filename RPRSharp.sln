@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPRSharp", "RPRSharp\RPRSharp.csproj", "{7AB54040-6201-4295-8297-F031A12A3651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tutorials", "Tutorials\Tutorials.csproj", "{40307032-68B2-4432-B2B3-2040FC48AC1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AB54040-6201-4295-8297-F031A12A3651}.Debug|x64.ActiveCfg = Debug|x64
+		{7AB54040-6201-4295-8297-F031A12A3651}.Debug|x64.Build.0 = Debug|x64
+		{7AB54040-6201-4295-8297-F031A12A3651}.Release|x64.ActiveCfg = Release|x64
+		{7AB54040-6201-4295-8297-F031A12A3651}.Release|x64.Build.0 = Release|x64
+		{40307032-68B2-4432-B2B3-2040FC48AC1A}.Debug|x64.ActiveCfg = Debug|x64
+		{40307032-68B2-4432-B2B3-2040FC48AC1A}.Debug|x64.Build.0 = Debug|x64
+		{40307032-68B2-4432-B2B3-2040FC48AC1A}.Release|x64.ActiveCfg = Release|x64
+		{40307032-68B2-4432-B2B3-2040FC48AC1A}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3115D815-14F5-4238-8566-785A8D7847AF}
+	EndGlobalSection
+EndGlobal
