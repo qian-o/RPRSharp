@@ -13,14 +13,14 @@ public class Common
 
     static Common()
     {
-#if CentOS7
-        LibraryDirectory = Path.Combine("Dependencies", "binCentOS7");
+#if Win64
+        LibraryDirectory = Path.Combine("Dependencies", "binWin64");
 #elif MacOS
         LibraryDirectory = Path.Combine("Dependencies", "binMacOS");
+#elif CentOS7
+        LibraryDirectory = Path.Combine("Dependencies", "binCentOS7");
 #elif Ubuntu20
         LibraryDirectory = Path.Combine("Dependencies", "binUbuntu20");
-#else
-        LibraryDirectory = Path.Combine("Dependencies", "binWin64");
 #endif
 
         if (OperatingSystem.IsLinux())

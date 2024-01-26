@@ -4,8 +4,10 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        ITutorial tutorial = new ContextCreation();
+        using ITutorial tutorial = new ContextCreation();
 
         tutorial.Run();
+
+        Console.ReadKey();
     }
 }
