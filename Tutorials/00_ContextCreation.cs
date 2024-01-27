@@ -9,6 +9,8 @@ public unsafe class ContextCreation : ITutorial
 {
     public void Run()
     {
+        Console.WriteLine("Radeon ProRender SDK simple context creation tutorial.");
+
         int pluginID = Rpr.RegisterPlugin(Common.Northstar64);
 
         if (pluginID == -1)
@@ -35,7 +37,7 @@ public unsafe class ContextCreation : ITutorial
         Console.WriteLine($"GPU0: {SilkMarshal.PtrToString((nint)deviceNameGpu0)}");
 
         // Release the context
-        Rpr.ObjectDelete((void*)context.Handle).CheckStatus();
+        Rpr.ObjectDelete(context).CheckStatus();
     }
 
     public void Dispose()

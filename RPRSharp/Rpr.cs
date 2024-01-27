@@ -1463,6 +1463,18 @@ public static unsafe partial class Rpr
         }
     }
 
+    public static Status ObjectDelete<T>(T obj) where T : unmanaged
+    {
+        if (obj.GetType().GetField("Handle") is FieldInfo fieldInfo)
+        {
+            return ObjectDelete((void*)(nint)fieldInfo.GetValue(obj)!);
+        }
+        else
+        {
+            return Status.ERROR_INVALID_PARAMETER;
+        }
+    }
+
     public static Status ObjectDelete(void* obj)
     {
         return rprObjectDelete(obj);
