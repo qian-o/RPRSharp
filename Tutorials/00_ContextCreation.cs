@@ -1,12 +1,10 @@
-﻿using RPRSharp;
-
-namespace Tutorials;
+﻿namespace Tutorials;
 
 public unsafe class ContextCreation : ITutorial
 {
     public void Run()
     {
-        Console.WriteLine(Common.RprTextureCompiler64);
+
     }
 
     public void Dispose()

@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using RPRSharp.Enums;
 using RPRSharp.Structs;
+using Silk.NET.Core.Native;
 
 namespace RPRSharp;
 
@@ -36,8 +38,27 @@ public static partial class Rpr
         }
     }
 
-    public static unsafe Status CreateContext(uint api_version, int* pluginIDs, long pluginCount, CreationFlags creation_flags, byte** props, byte* cache_path, RprContext* context)
+    public static unsafe Status RegisterPlugin(string path)
     {
-        return rprCreateContext(api_version, pluginIDs, pluginCount, creation_flags, props, cache_path, context);
+        byte* ptr1 = (byte*)SilkMarshal.StringToPtr(path);
+        Status status = rprRegisterPlugin(ptr1);
+        SilkMarshal.Free((nint)ptr1);
+
+        return status;
+    }
+
+    public static unsafe Status CreateContext(uint api_version, int[] pluginIDs, long pluginCount, CreationFlags creation_flags, string[] props, string cache_path, out Context context)
+    {
+        context = new Context();
+
+        int* ptr1 = (int*)Unsafe.AsPointer(ref pluginIDs);
+        ContextProperties* ptr2 = (ContextProperties*)SilkMarshal.StringArrayToPtr(props);
+        byte* ptr3 = (byte*)SilkMarshal.StringToPtr(cache_path);
+        Context* ptr4 = (Context*)Unsafe.AsPointer(ref context);
+        Status status = rprCreateContext(api_version, ptr1, pluginCount, creation_flags, ptr2, ptr3, ptr4);
+        SilkMarshal.Free((nint)ptr3);
+        SilkMarshal.Free((nint)ptr2);
+
+        return status;
     }
 }

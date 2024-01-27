@@ -7,7 +7,7 @@ namespace RPRSharp.Structs;
 /// rpr_framebuffer_format
 /// </summary>
 [StructLayout(LayoutKind.Sequential)]
-public struct FramebufferFormat
+public struct FrameBufferFormat
 {
     public uint NumComponents;
 
