@@ -2,12 +2,8 @@
 
 internal class Program
 {
-    static void Main(string[] args)
+    static void Main(string[] _)
     {
-        using ITutorial tutorial = new ContextCreation();
-
-        tutorial.Run();
-
-        Console.ReadKey();
+        new ContextCreation().Run();
     }
 }
