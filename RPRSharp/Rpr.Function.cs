@@ -8,7 +8,7 @@ namespace RPRSharp;
 public partial class Rpr
 {
     [LibraryImport("rpr")]
-    private static unsafe partial Status rprRegisterPlugin(byte* path);
+    private static unsafe partial int rprRegisterPlugin(byte* path);
 
     [LibraryImport("rpr")]
     private static unsafe partial Status rprCreateContext(uint api_version, int* pluginIDs, long pluginCount, CreationFlags creation_flags, ContextProperties* props, byte* cache_path, Context* out_context);
@@ -56,7 +56,7 @@ public partial class Rpr
     private static unsafe partial Status rprContextSetScene(Context context, Scene scene);
 
     [LibraryImport("rpr")]
-    private static unsafe partial Status rprContextGetScene(Context arg0, Scene* out_scene);
+    private static unsafe partial Status rprContextGetScene(Context context, Scene* out_scene);
 
     [LibraryImport("rpr")]
     private static unsafe partial Status rprContextSetParameterByKey1u(Context context, ContextInfo in_input, uint x);
@@ -304,10 +304,8 @@ public partial class Rpr
     [LibraryImport("rpr")]
     private static unsafe partial Status rprShapeSetVisibilityFlag(Shape shape, ShapeInfo visibilityFlag, [MarshalAs(UnmanagedType.Bool)] bool visible);
 
-
     [LibraryImport("rpr")]
     private static unsafe partial Status rprCurveSetVisibilityFlag(Curve curve, CurveParameter visibilityFlag, [MarshalAs(UnmanagedType.Bool)] bool visible);
-
 
     [LibraryImport("rpr")]
     private static unsafe partial Status rprShapeSetVisibility(Shape shape, [MarshalAs(UnmanagedType.Bool)] bool visible);

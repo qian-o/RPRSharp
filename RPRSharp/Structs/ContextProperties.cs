@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices;
+using Silk.NET.Core.Native;
 
 namespace RPRSharp.Structs;
 
@@ -9,4 +10,14 @@ namespace RPRSharp.Structs;
 public struct ContextProperties
 {
     public nint Handle;
+
+    public ContextProperties(int prop)
+    {
+        Handle = prop;
+    }
+
+    public ContextProperties(string prop)
+    {
+        Handle = SilkMarshal.StringToPtr(prop);
+    }
 }

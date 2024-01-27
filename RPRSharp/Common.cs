@@ -1,6 +1,9 @@
-﻿namespace RPRSharp;
+﻿using RPRSharp.Enums;
+using RPRSharp.Structs;
 
-public class Common
+namespace RPRSharp;
+
+public static class Common
 {
     public static readonly string LibraryDirectory;
     public static readonly string Northstar64;
@@ -10,6 +13,9 @@ public class Common
     public static readonly string Tahoe64;
     public static readonly string RprsRender64;
     public static readonly string RprTextureCompiler64;
+    public static readonly string HipBin;
+
+    public static readonly ContextProperties[] HipProperties;
 
     static Common()
     {
@@ -52,6 +58,24 @@ public class Common
             Tahoe64 = Path.Combine(LibraryDirectory, "Tahoe64.dll");
             RprsRender64 = Path.Combine(LibraryDirectory, "RprsRender64.exe");
             RprTextureCompiler64 = Path.Combine(LibraryDirectory, "RprTextureCompiler64.exe");
+        }
+
+        HipBin = Path.Combine(LibraryDirectory, "hipbin");
+        HipProperties = [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(HipBin)];
+    }
+
+    public static void CheckStatus(this Status status)
+    {
+        if (status != Status.SUCCESS)
+        {
+            Console.WriteLine($"RPRSharp: {status}");
+
+            if (status == Status.ERROR_SHADER_COMPILATION)
+            {
+                Console.WriteLine("==== KERNEL ERROR ====");
+                Console.WriteLine("Since Northstar 3.01.00, precompiled kernels must be downloaded from a separate link and inluded in projects.");
+                Console.WriteLine("Check the readme of this SDK for more information.");
+            }
         }
     }
 }
