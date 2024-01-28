@@ -4,6 +4,6 @@ internal class Program
 {
     static void Main(string[] _)
     {
-        new ContextCreation().Run();
+        new ParametersEnumeration().Run();
     }
 }

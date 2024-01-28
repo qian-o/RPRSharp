@@ -593,7 +593,7 @@ public partial class Rpr
     private static unsafe partial Status rprMaterialNodeGetInfo(MaterialNode in_node, MaterialNodeInfo in_info, long in_size, void* in_data, long* out_size);
 
     [LibraryImport("rpr")]
-    private static unsafe partial Status rprMaterialNodeGetInputInfo(MaterialNode in_node, int in_input_idx, MaterialNodeInput in_info, long in_size, void* in_data, long* out_size);
+    private static unsafe partial Status rprMaterialNodeGetInputInfo(MaterialNode in_node, int in_input_idx, MaterialNodeInputInfo in_info, long in_size, void* in_data, long* out_size);
 
     [LibraryImport("rpr")]
     private static unsafe partial Status rprContextCreateComposite(Context context, CompositeType in_type, Composite* out_composite);

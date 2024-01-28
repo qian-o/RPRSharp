@@ -1342,7 +1342,7 @@ public static unsafe partial class Rpr
         }
     }
 
-    public static Status MaterialNodeGetInputInfo(MaterialNode materialNode, int idx, MaterialNodeInput info, long size, void* data, out long sizeRet)
+    public static Status MaterialNodeGetInputInfo(MaterialNode materialNode, int idx, MaterialNodeInputInfo info, long size, void* data, out long sizeRet)
     {
         fixed (long* ptr1 = &sizeRet)
         {
