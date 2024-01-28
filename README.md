@@ -8,3 +8,6 @@ The code is currently in the early stages of development, and it cannot be guara
 
 00_context_creation
 ![image](https://github.com/qian-o/RPRSharp/assets/84434846/3084c96a-a7fc-4ac7-8915-b9797adef36d)
+
+03_parameters_enumeration
+![image](https://github.com/qian-o/RPRSharp/assets/84434846/1c9e8958-4cd1-4376-bf73-7ea14e6833be)
