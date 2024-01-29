@@ -9,20 +9,19 @@ public static class Core
     public const string AMD_Radeon_ProRender_SDK = "AMD Radeon ProRender SDK";
 
     private static readonly string _libraryDirectory;
-    private static readonly Dictionary<string, nint> _nativeLibrary;
 
     static Core()
     {
-        if (OperatingSystem.IsLinux())
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
             _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
         }
-        else if (OperatingSystem.IsMacOS())
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
             _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binMacOS");
         }
-        else if (OperatingSystem.IsWindows())
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binWin64");
         }
@@ -30,8 +29,6 @@ public static class Core
         {
             _libraryDirectory = string.Empty;
         }
-
-        _nativeLibrary = [];
     }
 
     public static bool IsInitialized { get; private set; }
@@ -58,19 +55,7 @@ public static class Core
     {
         if (!IsInitialized)
         {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (libraryName, _, _) =>
-            {
-                lock (_nativeLibrary)
-                {
-                    if (!_nativeLibrary.TryGetValue(libraryName, out nint value))
-                    {
-                        value = NativeLibrary.Load(GetLibraryPath(libraryName));
-                        _nativeLibrary[libraryName] = value;
-                    }
-
-                    return value;
-                }
-            });
+            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (libraryName, _, _) => NativeLibrary.Load(GetLibraryPath(libraryName)));
 
             IsInitialized = true;
         }
@@ -78,15 +63,15 @@ public static class Core
 
     public static string GetLibraryPath(string libraryName)
     {
-        if (OperatingSystem.IsLinux())
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             return Path.Combine(_libraryDirectory, $"lib{libraryName}.so");
         }
-        else if (OperatingSystem.IsMacOS())
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
             return Path.Combine(_libraryDirectory, $"lib{libraryName}.dylib");
         }
-        else if (OperatingSystem.IsWindows())
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             return Path.Combine(_libraryDirectory, $"{libraryName}.dll");
         }
