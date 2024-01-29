@@ -66,7 +66,7 @@ public static class Common
     {
         if (status != Status.SUCCESS)
         {
-            StringBuilder stringBuilder = new(256);
+            StringBuilder stringBuilder = new();
             stringBuilder.AppendLine($"RPRSharp: {status}");
 
             if (status == Status.ERROR_SHADER_COMPILATION)

@@ -3,7 +3,6 @@ using RPRSharp;
 using RPRSharp.Enums;
 using RPRSharp.Structs;
 using Tutorials.Helpers;
-using Tutorials.Models;
 
 namespace Tutorials;
 
@@ -48,10 +47,7 @@ public unsafe class BasicScene : BaseTutorial
         // Create cube mesh
         Shape cube;
         {
-            Vertex[] cubeData = RprHelper.Cube();
-            int[] indices = RprHelper.Indices();
-            int[] numFaceVertices = RprHelper.NumFaceVertices();
-            RprHelper.CreateMesh(context, cubeData, indices, numFaceVertices, out cube).CheckStatus();
+            RprHelper.CreateMesh(context, RprHelper.Cube, RprHelper.Indices, RprHelper.NumFaceVertices, out cube).CheckStatus();
 
             // Create a transform for the cube
             Matrix4x4 m = Matrix4x4.CreateTranslation(-2.0f, 1.0f, 0.0f);
@@ -128,10 +124,7 @@ public unsafe class BasicScene : BaseTutorial
         // add a new shape representing the floor of the scene.
         Shape plane;
         {
-            Vertex[] planeData = RprHelper.Plane();
-            int[] indices = RprHelper.Indices();
-            int[] numFaceVertices = RprHelper.NumFaceVertices();
-            RprHelper.CreateMesh(context, planeData, indices, numFaceVertices, out plane).CheckStatus();
+            RprHelper.CreateMesh(context, RprHelper.Plane, RprHelper.Indices, RprHelper.NumFaceVertices, out plane).CheckStatus();
 
             // Attach the plane to the scene
             Rpr.SceneAttachShape(scene, plane).CheckStatus();
