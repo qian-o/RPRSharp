@@ -15,7 +15,7 @@ public unsafe class BasicScene : BaseTutorial
         // Rpr.ContextSetParameterByKey1u(default, ContextInfo.TRACING_ENABLED, 1);
 
         // Create the RPR context
-        int pluginID = Rpr.RegisterPlugin(Common.Northstar64);
+        int pluginID = Rpr.RegisterPlugin(Core.Northstar64);
 
         if (pluginID == -1)
         {

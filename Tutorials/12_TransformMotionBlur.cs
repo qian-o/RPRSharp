@@ -8,7 +8,7 @@ public class TransformMotionBlur : BaseTutorial
     public override void Run()
     {
         // Create the RPR context
-        int pluginID = Rpr.RegisterPlugin(Common.Northstar64);
+        int pluginID = Rpr.RegisterPlugin(Core.Northstar64);
 
         if (pluginID == -1)
         {

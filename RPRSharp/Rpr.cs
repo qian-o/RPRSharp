@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.InteropServices;
 using RPRSharp.Enums;
 using RPRSharp.Structs;
 using Silk.NET.Core.Native;
@@ -21,21 +20,6 @@ public static unsafe partial class Rpr
     public const int OBJECT_UNIQUE_ID = 0x777778;
     public const int OBJECT_CUSTOM_PTR = 0x777779;
     public const int INSTANCE_PARENT_SHAPE = 0x1601;
-
-    static Rpr()
-    {
-        NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), DllImportResolver);
-
-        static nint DllImportResolver(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
-        {
-            if (libraryName == "rpr")
-            {
-                return NativeLibrary.Load(Common.RadeonProRender64);
-            }
-
-            return 0;
-        }
-    }
 
     public static int RegisterPlugin(string path)
     {

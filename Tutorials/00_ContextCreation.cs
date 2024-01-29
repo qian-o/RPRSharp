@@ -11,7 +11,7 @@ public unsafe class ContextCreation : BaseTutorial
     {
         Console.WriteLine("Radeon ProRender SDK simple context creation tutorial.");
 
-        int pluginID = Rpr.RegisterPlugin(Common.Northstar64);
+        int pluginID = Rpr.RegisterPlugin(Core.Northstar64);
 
         if (pluginID == -1)
         {

@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="Dependencies\**">
+		<None Include="AMD Radeon ProRender\**">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
