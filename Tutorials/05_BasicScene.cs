@@ -10,6 +10,10 @@ public unsafe class BasicScene : BaseTutorial
 {
     public override void Run()
     {
+        // for Debugging you can enable Radeon ProRender API trace
+        // set this before any RPR API calls
+        // Rpr.ContextSetParameterByKey1u(default, ContextInfo.TRACING_ENABLED, 1);
+
         // Create the RPR context
         int pluginID = Rpr.RegisterPlugin(Common.Northstar64);
 
