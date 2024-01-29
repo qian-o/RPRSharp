@@ -2,7 +2,7 @@
 using RPRSharp;
 using RPRSharp.Enums;
 using RPRSharp.Structs;
-using Silk.NET.Core.Native;
+using Tutorials.Helpers;
 
 namespace Tutorials;
 
@@ -52,7 +52,7 @@ public unsafe class ParametersEnumeration : BaseTutorial
                     Rpr.ContextGetParameterInfo(context, i, ParameterInfo.VALUE, paramValueSize, valuePtr, out _).CheckStatus();
                 }
 
-                Console.WriteLine($"        {paramID} ({paramType}) = ".ToLower() + GetValue(paramType, value));
+                Console.WriteLine($"        {paramID} ({paramType}) = ".ToLower() + RprHelper.GetValue(paramType, value));
             }
         }
 
@@ -120,24 +120,5 @@ public unsafe class ParametersEnumeration : BaseTutorial
         Rpr.ObjectDelete(materialSystem).CheckStatus();
         Rpr.ObjectDelete(materialNode).CheckStatus();
         Rpr.ObjectDelete(context).CheckStatus();
-    }
-
-    public static object? GetValue(ParameterType parameterType, byte[] bytes)
-    {
-        fixed (byte* bytesPtr = bytes)
-        {
-            return parameterType switch
-            {
-                ParameterType.FLOAT => BitConverter.ToSingle(bytes),
-                ParameterType.FLOAT2 => new Vector2(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4)),
-                ParameterType.FLOAT3 => new Vector3(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4), BitConverter.ToSingle(bytes, 8)),
-                ParameterType.FLOAT4 => new Vector4(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4), BitConverter.ToSingle(bytes, 8), BitConverter.ToSingle(bytes, 12)),
-                ParameterType.STRING => SilkMarshal.PtrToString((nint)bytesPtr),
-                ParameterType.UINT => BitConverter.ToUInt32(bytes),
-                ParameterType.ULONG => BitConverter.ToUInt64(bytes),
-                ParameterType.LONGLONG => BitConverter.ToInt64(bytes),
-                _ => bytes,
-            };
-        }
     }
 }

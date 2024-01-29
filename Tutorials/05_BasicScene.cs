@@ -1,10 +1,9 @@
 ﻿using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using RPRSharp;
 using RPRSharp.Enums;
 using RPRSharp.Structs;
 using Tutorials.Helpers;
+using Tutorials.Models;
 
 namespace Tutorials;
 
@@ -49,25 +48,10 @@ public unsafe class BasicScene : BaseTutorial
         // Create cube mesh
         Shape cube;
         {
-            Vertex[] cubeData = Vertex.Cube();
-            int[] indices = Vertex.Indices();
-            int[] numFaceVertices = Vertex.NumFaceVertices();
-
-            float* cubeVertices = (float*)Unsafe.AsPointer(ref cubeData[0]);
-            float* cubeNormals = (float*)((byte*)cubeVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Norm)));
-            float* cubeUVs = (float*)((byte*)cubeVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Tex)));
-            int* cubeIndices = (int*)Unsafe.AsPointer(ref indices[0]);
-            int* cubeNumVertices = (int*)Unsafe.AsPointer(ref numFaceVertices[0]);
-
-            Rpr.ContextCreateMesh(context,
-                                  cubeVertices, cubeData.Length, sizeof(Vertex),
-                                  cubeNormals, cubeData.Length, sizeof(Vertex),
-                                  cubeUVs, cubeData.Length, sizeof(Vertex),
-                                  cubeIndices, sizeof(int),
-                                  cubeIndices, sizeof(int),
-                                  cubeIndices, sizeof(int),
-                                  cubeNumVertices, numFaceVertices.Length,
-                                  out cube).CheckStatus();
+            Vertex[] cubeData = RprHelper.Cube();
+            int[] indices = RprHelper.Indices();
+            int[] numFaceVertices = RprHelper.NumFaceVertices();
+            RprHelper.CreateMesh(context, cubeData, indices, numFaceVertices, out cube).CheckStatus();
 
             // Create a transform for the cube
             Matrix4x4 m = Matrix4x4.CreateTranslation(-2.0f, 1.0f, 0.0f);
@@ -144,25 +128,10 @@ public unsafe class BasicScene : BaseTutorial
         // add a new shape representing the floor of the scene.
         Shape plane;
         {
-            Vertex[] planeData = Vertex.Plane();
-            int[] indices = Vertex.Indices();
-            int[] numFaceVertices = Vertex.NumFaceVertices();
-
-            float* planeVertices = (float*)Unsafe.AsPointer(ref planeData[0]);
-            float* planeNormals = (float*)((byte*)planeVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Norm)));
-            float* planeUVs = (float*)((byte*)planeVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Tex)));
-            int* planeIndices = (int*)Unsafe.AsPointer(ref indices[0]);
-            int* planeNumVertices = (int*)Unsafe.AsPointer(ref numFaceVertices[0]);
-
-            Rpr.ContextCreateMesh(context,
-                                  planeVertices, planeData.Length, sizeof(Vertex),
-                                  planeNormals, planeData.Length, sizeof(Vertex),
-                                  planeUVs, planeData.Length, sizeof(Vertex),
-                                  planeIndices, sizeof(int),
-                                  planeIndices, sizeof(int),
-                                  planeIndices, sizeof(int),
-                                  planeNumVertices, numFaceVertices.Length,
-                                  out plane).CheckStatus();
+            Vertex[] planeData = RprHelper.Plane();
+            int[] indices = RprHelper.Indices();
+            int[] numFaceVertices = RprHelper.NumFaceVertices();
+            RprHelper.CreateMesh(context, planeData, indices, numFaceVertices, out plane).CheckStatus();
 
             // Attach the plane to the scene
             Rpr.SceneAttachShape(scene, plane).CheckStatus();

@@ -1461,21 +1461,22 @@ public static unsafe partial class Rpr
         }
     }
 
-    public static Status ObjectDelete<T>(T obj) where T : unmanaged
+    public static Status ObjectDelete(object obj)
     {
-        if (obj.GetType().GetField("Handle") is FieldInfo fieldInfo)
+        Type type = obj.GetType();
+
+        if (type == typeof(nint))
         {
-            return ObjectDelete((void*)(nint)fieldInfo.GetValue(obj)!);
+            return rprObjectDelete((void*)(nint)obj);
+        }
+        else if (type.IsValueType && type.GetFields().FirstOrDefault(item => item.FieldType == typeof(nint)) is FieldInfo fieldInfo)
+        {
+            return ObjectDelete(fieldInfo.GetValue(obj)!);
         }
         else
         {
             return Status.ERROR_INVALID_PARAMETER;
         }
-    }
-
-    public static Status ObjectDelete(void* obj)
-    {
-        return rprObjectDelete(obj);
     }
 
     public static Status ObjectSetName(void* node, string name)
