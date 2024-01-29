@@ -9,6 +9,7 @@ public static class Core
     public const string AMD_Radeon_ProRender_SDK = "AMD Radeon ProRender SDK";
 
     private static readonly string _libraryDirectory;
+    private static readonly Dictionary<string, string> _libraryNameAndPath;
 
     static Core()
     {
@@ -29,23 +30,34 @@ public static class Core
         {
             _libraryDirectory = string.Empty;
         }
+
+        _libraryNameAndPath = new()
+        {
+            { nameof(Northstar64), GetLibraryPath(nameof(Northstar64)) },
+            { nameof(ProRenderGLTF), GetLibraryPath(nameof(ProRenderGLTF)) },
+            { nameof(RadeonProRender64), GetLibraryPath(nameof(RadeonProRender64)) },
+            { nameof(RprLoadStore64), GetLibraryPath(nameof(RprLoadStore64)) },
+            { nameof(Tahoe64), GetLibraryPath(nameof(Tahoe64)) },
+            { nameof(RprsRender64), Path.Combine(_libraryDirectory, nameof(RprsRender64)) },
+            { nameof(RprTextureCompiler64), Path.Combine(_libraryDirectory, nameof(RprTextureCompiler64)) }
+        };
     }
 
     public static bool IsInitialized { get; private set; }
 
-    public static string Northstar64 => GetLibraryPath("Northstar64");
+    public static string Northstar64 => _libraryNameAndPath[nameof(Northstar64)];
 
-    public static string ProRenderGLTF => GetLibraryPath("ProRenderGLTF");
+    public static string ProRenderGLTF => _libraryNameAndPath[nameof(ProRenderGLTF)];
 
-    public static string RadeonProRender64 => GetLibraryPath("RadeonProRender64");
+    public static string RadeonProRender64 => _libraryNameAndPath[nameof(RadeonProRender64)];
 
-    public static string RprLoadStore64 => GetLibraryPath("RprLoadStore64");
+    public static string RprLoadStore64 => _libraryNameAndPath[nameof(RprLoadStore64)];
 
-    public static string Tahoe64 => GetLibraryPath("Tahoe64");
+    public static string Tahoe64 => _libraryNameAndPath[nameof(Tahoe64)];
 
-    public static string RprsRender64 => Path.Combine(_libraryDirectory, "RprsRender64");
+    public static string RprsRender64 => _libraryNameAndPath[nameof(RprsRender64)];
 
-    public static string RprTextureCompiler64 => Path.Combine(_libraryDirectory, "RprTextureCompiler64");
+    public static string RprTextureCompiler64 => _libraryNameAndPath[nameof(RprTextureCompiler64)];
 
     public static string HipBin => Path.Combine(AMD_Radeon_ProRender_SDK, "hipbin");
 
@@ -55,7 +67,7 @@ public static class Core
     {
         if (!IsInitialized)
         {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (libraryName, _, _) => NativeLibrary.Load(GetLibraryPath(libraryName)));
+            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (libraryName, _, _) => NativeLibrary.Load(_libraryNameAndPath[libraryName]));
 
             IsInitialized = true;
         }
