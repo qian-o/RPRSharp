@@ -2,8 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using RPRSharp;
-using RPRSharp.Enums;
-using RPRSharp.Structs;
 using Silk.NET.Core.Native;
 using Tutorials.Models;
 
@@ -66,7 +64,7 @@ public unsafe class RprHelper
     ];
 
     public static int[] CubeNumFaceVertices => [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
-    
+
     public static Vertex[] Plane =>
     [
         new Vertex { Pos = new Vector3(-15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },

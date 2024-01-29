@@ -1,4 +1,4 @@
-﻿namespace RPRSharp.Enums;
+﻿namespace RPRSharp;
 
 /// <summary>
 /// rpr_subdiv_boundary_interfop_type

@@ -1,4 +1,4 @@
-﻿namespace RPRSharp.Enums;
+﻿namespace RPRSharp;
 
 /// <summary>
 /// rpr_material_input_raster

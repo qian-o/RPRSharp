@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using RPRSharp.Enums;
-using RPRSharp.Structs;
 
 namespace RPRSharp;
 

@@ -1,4 +1,4 @@
-﻿namespace RPRSharp.Enums;
+﻿namespace RPRSharp;
 
 /// <summary>
 /// rpr_component_type

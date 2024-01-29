@@ -1,7 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using RPRSharp.Enums;
-using RPRSharp.Structs;
-using Buffer = RPRSharp.Structs.Buffer;
 
 namespace RPRSharp;
 

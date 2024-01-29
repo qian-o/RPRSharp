@@ -1,7 +1,6 @@
 ﻿using System.Runtime.InteropServices;
-using RPRSharp.Enums;
 
-namespace RPRSharp.Structs;
+namespace RPRSharp;
 
 /// <summary>
 /// rpr_image_format

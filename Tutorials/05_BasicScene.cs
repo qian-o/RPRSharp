@@ -1,7 +1,5 @@
 ﻿using System.Numerics;
 using RPRSharp;
-using RPRSharp.Enums;
-using RPRSharp.Structs;
 using Tutorials.Helpers;
 
 namespace Tutorials;

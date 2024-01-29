@@ -1,6 +1,4 @@
 ﻿using RPRSharp;
-using RPRSharp.Enums;
-using RPRSharp.Structs;
 
 namespace Tutorials;
 

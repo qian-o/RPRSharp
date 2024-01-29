@@ -1,5 +1,4 @@
 ﻿using RPRSharp;
-using RPRSharp.Structs;
 
 namespace Tutorials;
 

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace RPRSharp.Structs;
+namespace RPRSharp;
 
 /// <summary>
 /// rpr_ies_image_desc

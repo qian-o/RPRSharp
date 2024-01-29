@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Silk.NET.Core.Native;
 
-namespace RPRSharp.Structs;
+namespace RPRSharp;
 
 /// <summary>
 /// rpr_context_properties
