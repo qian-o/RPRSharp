@@ -1,4 +1,5 @@
-﻿using RPRSharp.Enums;
+﻿using System.Text;
+using RPRSharp.Enums;
 using RPRSharp.Structs;
 
 namespace RPRSharp;
@@ -61,17 +62,27 @@ public static class Common
         HipProperties = [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(HipBin)];
     }
 
-    public static void CheckStatus(this Status status)
+    public static void CheckStatus(this Status status, bool @throw = true)
     {
         if (status != Status.SUCCESS)
         {
-            Console.WriteLine($"RPRSharp: {status}");
+            StringBuilder stringBuilder = new(256);
+            stringBuilder.AppendLine($"RPRSharp: {status}");
 
             if (status == Status.ERROR_SHADER_COMPILATION)
             {
-                Console.WriteLine("==== KERNEL ERROR ====");
-                Console.WriteLine("Since Northstar 3.01.00, precompiled kernels must be downloaded from a separate link and inluded in projects.");
-                Console.WriteLine("Check the readme of this SDK for more information.");
+                stringBuilder.AppendLine("==== KERNEL ERROR ====");
+                stringBuilder.AppendLine("Since Northstar 3.01.00, precompiled kernels must be downloaded from a separate link and inluded in projects.");
+                stringBuilder.AppendLine("Check the readme of this SDK for more information.");
+            }
+
+            if (@throw)
+            {
+                throw new Exception(stringBuilder.ToString());
+            }
+            else
+            {
+                Console.WriteLine(stringBuilder.ToString());
             }
         }
     }
