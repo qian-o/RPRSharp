@@ -6,6 +6,8 @@ namespace RPRSharp;
 
 public static class Core
 {
+    public const string AMD_Radeon_ProRender_SDK = "AMD Radeon ProRender SDK";
+
     public static readonly string LibraryDirectory;
 
     public static bool IsInitialized { get; private set; }
@@ -20,11 +22,11 @@ public static class Core
 
     public static string Tahoe64 => GetLibraryPath("Tahoe64");
 
-    public static string HipBin => GetLibraryPath("RprLoadStore64");
-
     public static string RprsRender64 => Path.Combine(LibraryDirectory, "RprsRender64");
 
     public static string RprTextureCompiler64 => Path.Combine(LibraryDirectory, "RprTextureCompiler64");
+
+    public static string HipBin => Path.Combine(AMD_Radeon_ProRender_SDK, "hipbin");
 
     public static ContextProperties[] HipProperties => [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(HipBin)];
 
@@ -32,16 +34,16 @@ public static class Core
     {
         if (OperatingSystem.IsLinux())
         {
-            LibraryDirectory = Path.Combine("AMD Radeon ProRender", "binCentOS7");
-            LibraryDirectory = Path.Combine("AMD Radeon ProRender", "binUbuntu20");
+            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
+            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
         }
         else if (OperatingSystem.IsMacOS())
         {
-            LibraryDirectory = Path.Combine("AMD Radeon ProRender", "binMacOS");
+            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binMacOS");
         }
         else if (OperatingSystem.IsWindows())
         {
-            LibraryDirectory = Path.Combine("AMD Radeon ProRender", "binWin64");
+            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binWin64");
         }
         else
         {
