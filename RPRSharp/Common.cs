@@ -19,18 +19,11 @@ public static class Common
 
     static Common()
     {
-#if Win64
-        LibraryDirectory = Path.Combine("Dependencies", "binWin64");
-#elif MacOS
-        LibraryDirectory = Path.Combine("Dependencies", "binMacOS");
-#elif CentOS7
-        LibraryDirectory = Path.Combine("Dependencies", "binCentOS7");
-#elif Ubuntu20
-        LibraryDirectory = Path.Combine("Dependencies", "binUbuntu20");
-#endif
-
         if (OperatingSystem.IsLinux())
         {
+            LibraryDirectory = Path.Combine("Dependencies", "binCentOS7");
+            LibraryDirectory = Path.Combine("Dependencies", "binUbuntu20");
+
             Northstar64 = Path.Combine(LibraryDirectory, "libNorthstar64.so");
             ProRenderGLTF = Path.Combine(LibraryDirectory, "libProRenderGLTF.so");
             RadeonProRender64 = Path.Combine(LibraryDirectory, "libRadeonProRender64.so");
@@ -41,6 +34,8 @@ public static class Common
         }
         else if (OperatingSystem.IsMacOS())
         {
+            LibraryDirectory = Path.Combine("Dependencies", "binMacOS");
+
             Northstar64 = Path.Combine(LibraryDirectory, "libNorthstar64.dylib");
             ProRenderGLTF = Path.Combine(LibraryDirectory, "libProRenderGLTF.dylib");
             RadeonProRender64 = Path.Combine(LibraryDirectory, "libRadeonProRender64.dylib");
@@ -51,6 +46,8 @@ public static class Common
         }
         else
         {
+            LibraryDirectory = Path.Combine("Dependencies", "binWin64");
+
             Northstar64 = Path.Combine(LibraryDirectory, "Northstar64.dll");
             ProRenderGLTF = Path.Combine(LibraryDirectory, "ProRenderGLTF.dll");
             RadeonProRender64 = Path.Combine(LibraryDirectory, "RadeonProRender64.dll");

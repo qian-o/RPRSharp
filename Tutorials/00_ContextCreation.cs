@@ -5,9 +5,9 @@ using Silk.NET.Core.Native;
 
 namespace Tutorials;
 
-public unsafe class ContextCreation : ITutorial
+public unsafe class ContextCreation : BaseTutorial
 {
-    public void Run()
+    public override void Run()
     {
         Console.WriteLine("Radeon ProRender SDK simple context creation tutorial.");
 
@@ -23,7 +23,7 @@ public unsafe class ContextCreation : ITutorial
 
         // Create context using a single GPU
         // note that multiple GPUs can be enabled for example with creation_flags = RPR_CREATION_FLAGS_ENABLE_GPU0 | RPR_CREATION_FLAGS_ENABLE_GPU1
-        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, CreationFlags.ENABLE_GPU0, Common.HipProperties, "", out Context context).CheckStatus();
+        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
 
         // Set the active plugin.
         Rpr.ContextSetActivePlugin(context, plugins[0]).CheckStatus();
@@ -38,10 +38,5 @@ public unsafe class ContextCreation : ITutorial
 
         // Release the context
         Rpr.ObjectDelete(context).CheckStatus();
-    }
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
     }
 }

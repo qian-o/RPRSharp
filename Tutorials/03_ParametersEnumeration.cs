@@ -6,9 +6,9 @@ using Silk.NET.Core.Native;
 
 namespace Tutorials;
 
-public unsafe class ParametersEnumeration : ITutorial
+public unsafe class ParametersEnumeration : BaseTutorial
 {
-    public void Run()
+    public override void Run()
     {
         Console.WriteLine("Radeon ProRender SDK parameters enumeration tutorial.");
 
@@ -22,7 +22,7 @@ public unsafe class ParametersEnumeration : ITutorial
         }
 
         int[] plugins = [pluginID];
-        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, CreationFlags.ENABLE_GPU0, Common.HipProperties, "", out Context context).CheckStatus();
+        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
         Rpr.ContextSetActivePlugin(context, plugins[0]).CheckStatus();
 
         Console.WriteLine("Context successfully created.");
@@ -120,11 +120,6 @@ public unsafe class ParametersEnumeration : ITutorial
         Rpr.ObjectDelete(materialSystem).CheckStatus();
         Rpr.ObjectDelete(materialNode).CheckStatus();
         Rpr.ObjectDelete(context).CheckStatus();
-    }
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
     }
 
     public static object? GetValue(ParameterType parameterType, byte[] bytes)
