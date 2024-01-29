@@ -51,7 +51,7 @@ public unsafe class BasicScene : BaseTutorial
         // Create cube mesh
         Shape cube;
         {
-            RprHelper.CreateMesh(context, RprHelper.Cube, RprHelper.Indices, RprHelper.NumFaceVertices, out cube).CheckStatus();
+            RprHelper.CreateMesh(context, RprHelper.Cube, RprHelper.CubeIndices, RprHelper.CubeNumFaceVertices, out cube).CheckStatus();
 
             // Create a transform for the cube
             Matrix4x4 m = Matrix4x4.CreateTranslation(-2.0f, 1.0f, 0.0f);
@@ -128,7 +128,7 @@ public unsafe class BasicScene : BaseTutorial
         // add a new shape representing the floor of the scene.
         Shape plane;
         {
-            RprHelper.CreateMesh(context, RprHelper.Plane, RprHelper.Indices, RprHelper.NumFaceVertices, out plane).CheckStatus();
+            RprHelper.CreateMesh(context, RprHelper.Plane, RprHelper.PlaneIndices, RprHelper.PlaneNumFaceVertices, out plane).CheckStatus();
 
             // Attach the plane to the scene
             Rpr.SceneAttachShape(scene, plane).CheckStatus();

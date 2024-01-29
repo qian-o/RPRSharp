@@ -44,15 +44,7 @@ public unsafe class RprHelper
         new Vertex { Pos = new Vector3(-1.0f, 1.0f, 1.0f), Norm = new Vector3(0.0f, 0.0f, 1.0f), Tex = new Vector2(0.0f, 1.0f) }
     ];
 
-    public static Vertex[] Plane =>
-    [
-        new Vertex { Pos = new Vector3(-15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-15.0f, 0.0f, 15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(15.0f, 0.0f, 15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) }
-    ];
-
-    public static int[] Indices =>
+    public static int[] CubeIndices =>
     [
         .. new int[] { 3, 1, 0 },
         .. new int[] { 2, 1, 3 },
@@ -73,7 +65,23 @@ public unsafe class RprHelper
         .. new int[] { 23, 20, 22 }
     ];
 
-    public static int[] NumFaceVertices => [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+    public static int[] CubeNumFaceVertices => [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3];
+    
+    public static Vertex[] Plane =>
+    [
+        new Vertex { Pos = new Vector3(-15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
+        new Vertex { Pos = new Vector3(-15.0f, 0.0f, 15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
+        new Vertex { Pos = new Vector3(15.0f, 0.0f, 15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
+        new Vertex { Pos = new Vector3(15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) }
+    ];
+
+    public static int[] PlaneIndices =>
+    [
+        .. new int[] { 3, 1, 0 },
+        .. new int[] { 2, 1, 3 }
+    ];
+
+    public static int[] PlaneNumFaceVertices => [3, 3];
 
     /// <summary>
     /// Convert simple data types based on ParameterType.
@@ -102,20 +110,20 @@ public unsafe class RprHelper
 
     public static Status CreateMesh(Context context, Vertex[] vertices, int[] indices, int[] numFaceVertices, out Shape shape)
     {
-        float* cubeVertices = (float*)Unsafe.AsPointer(ref vertices[0]);
-        float* cubeNormals = (float*)((byte*)cubeVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Norm)));
-        float* cubeUVs = (float*)((byte*)cubeVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Tex)));
-        int* cubeIndices = (int*)Unsafe.AsPointer(ref indices[0]);
-        int* cubeNumVertices = (int*)Unsafe.AsPointer(ref numFaceVertices[0]);
+        float* meshVertices = (float*)Unsafe.AsPointer(ref vertices[0]);
+        float* meshNormals = (float*)((byte*)meshVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Norm)));
+        float* meshUVs = (float*)((byte*)meshVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Tex)));
+        int* meshIndices = (int*)Unsafe.AsPointer(ref indices[0]);
+        int* meshNumVertices = (int*)Unsafe.AsPointer(ref numFaceVertices[0]);
 
         return Rpr.ContextCreateMesh(context,
-                                     cubeVertices, vertices.Length, sizeof(Vertex),
-                                     cubeNormals, vertices.Length, sizeof(Vertex),
-                                     cubeUVs, vertices.Length, sizeof(Vertex),
-                                     cubeIndices, sizeof(int),
-                                     cubeIndices, sizeof(int),
-                                     cubeIndices, sizeof(int),
-                                     cubeNumVertices, numFaceVertices.Length,
+                                     meshVertices, vertices.Length, sizeof(Vertex),
+                                     meshNormals, vertices.Length, sizeof(Vertex),
+                                     meshUVs, vertices.Length, sizeof(Vertex),
+                                     meshIndices, sizeof(int),
+                                     meshIndices, sizeof(int),
+                                     meshIndices, sizeof(int),
+                                     meshNumVertices, numFaceVertices.Length,
                                      out shape);
     }
 
@@ -126,7 +134,7 @@ public unsafe class RprHelper
             // Create a plane mesh
             Shape plane;
             {
-                CreateMesh(context, Plane, Indices, NumFaceVertices, out plane).CheckStatus();
+                CreateMesh(context, Plane, PlaneIndices, PlaneNumFaceVertices, out plane).CheckStatus();
                 gc.Add(plane);
 
                 // Set the plane transform
