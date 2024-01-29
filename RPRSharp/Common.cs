@@ -57,7 +57,7 @@ public static class Common
             RprTextureCompiler64 = Path.Combine(LibraryDirectory, "RprTextureCompiler64.exe");
         }
 
-        HipBin = Path.Combine(LibraryDirectory, "hipbin");
+        HipBin = Path.Combine("Dependencies", "hipbin");
         HipProperties = [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(HipBin)];
     }
 

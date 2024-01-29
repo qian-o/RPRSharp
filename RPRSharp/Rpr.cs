@@ -21,8 +21,6 @@ public static unsafe partial class Rpr
     public const int OBJECT_UNIQUE_ID = 0x777778;
     public const int OBJECT_CUSTOM_PTR = 0x777779;
     public const int INSTANCE_PARENT_SHAPE = 0x1601;
-    public const uint FALSE = 0u;
-    public const uint TRUE = 1u;
 
     static Rpr()
     {
