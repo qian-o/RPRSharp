@@ -8,7 +8,31 @@ public static class Core
 {
     public const string AMD_Radeon_ProRender_SDK = "AMD Radeon ProRender SDK";
 
-    public static readonly string LibraryDirectory;
+    private static readonly string _libraryDirectory;
+    private static readonly Dictionary<string, nint> _nativeLibrary;
+
+    static Core()
+    {
+        if (OperatingSystem.IsLinux())
+        {
+            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
+            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
+        }
+        else if (OperatingSystem.IsMacOS())
+        {
+            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binMacOS");
+        }
+        else if (OperatingSystem.IsWindows())
+        {
+            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binWin64");
+        }
+        else
+        {
+            _libraryDirectory = string.Empty;
+        }
+
+        _nativeLibrary = [];
+    }
 
     public static bool IsInitialized { get; private set; }
 
@@ -22,40 +46,31 @@ public static class Core
 
     public static string Tahoe64 => GetLibraryPath("Tahoe64");
 
-    public static string RprsRender64 => Path.Combine(LibraryDirectory, "RprsRender64");
+    public static string RprsRender64 => Path.Combine(_libraryDirectory, "RprsRender64");
 
-    public static string RprTextureCompiler64 => Path.Combine(LibraryDirectory, "RprTextureCompiler64");
+    public static string RprTextureCompiler64 => Path.Combine(_libraryDirectory, "RprTextureCompiler64");
 
     public static string HipBin => Path.Combine(AMD_Radeon_ProRender_SDK, "hipbin");
 
     public static ContextProperties[] HipProperties => [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(HipBin)];
 
-    static Core()
-    {
-        if (OperatingSystem.IsLinux())
-        {
-            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
-            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
-        }
-        else if (OperatingSystem.IsMacOS())
-        {
-            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binMacOS");
-        }
-        else if (OperatingSystem.IsWindows())
-        {
-            LibraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binWin64");
-        }
-        else
-        {
-            LibraryDirectory = string.Empty;
-        }
-    }
-
     public static void Init()
     {
         if (!IsInitialized)
         {
-            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (libraryName, _, _) => NativeLibrary.Load(GetLibraryPath(libraryName)));
+            NativeLibrary.SetDllImportResolver(Assembly.GetExecutingAssembly(), (libraryName, _, _) =>
+            {
+                lock (_nativeLibrary)
+                {
+                    if (!_nativeLibrary.TryGetValue(libraryName, out nint value))
+                    {
+                        value = NativeLibrary.Load(GetLibraryPath(libraryName));
+                        _nativeLibrary[libraryName] = value;
+                    }
+
+                    return value;
+                }
+            });
 
             IsInitialized = true;
         }
@@ -65,15 +80,15 @@ public static class Core
     {
         if (OperatingSystem.IsLinux())
         {
-            return Path.Combine(LibraryDirectory, $"lib{libraryName}.so");
+            return Path.Combine(_libraryDirectory, $"lib{libraryName}.so");
         }
         else if (OperatingSystem.IsMacOS())
         {
-            return Path.Combine(LibraryDirectory, $"lib{libraryName}.dylib");
+            return Path.Combine(_libraryDirectory, $"lib{libraryName}.dylib");
         }
         else if (OperatingSystem.IsWindows())
         {
-            return Path.Combine(LibraryDirectory, $"{libraryName}.dll");
+            return Path.Combine(_libraryDirectory, $"{libraryName}.dll");
         }
         else
         {
