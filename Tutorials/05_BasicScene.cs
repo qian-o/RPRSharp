@@ -135,7 +135,7 @@ public unsafe class BasicScene : BaseTutorial
         Rpr.FrameBufferSaveToFile(frame_buffer_resolved, "05_BasicScene_00.png").CheckStatus();
 
         Console.WriteLine("rendering 00 finished.");
-    
+
         Rpr.ObjectDelete(camera).CheckStatus();
         Rpr.ObjectDelete(cube).CheckStatus();
         Rpr.ObjectDelete(light).CheckStatus();
