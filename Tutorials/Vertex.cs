@@ -80,7 +80,7 @@ public struct Vertex
             .. new int[] { 23, 20, 22 }
         ];
 
-        return indices.ToArray();
+        return [.. indices];
     }
 
     public static int[] NumFaceVertices()
