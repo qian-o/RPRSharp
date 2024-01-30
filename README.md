@@ -14,3 +14,6 @@ The code is currently in the early stages of development, and it cannot be guara
 
 05_basic_scene
 ![image](https://github.com/qian-o/RPRSharp/assets/84434846/8439dc86-3a8b-4ea2-83e1-9d0e367f01e2)
+
+12_transform_motion_blur
+![image](https://github.com/qian-o/RPRSharp/assets/84434846/331c8dee-9b23-4f7a-ab46-8460b641659f)
