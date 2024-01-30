@@ -15,8 +15,18 @@ public static class Core
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
-            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
+            if (RuntimeInformation.OSDescription.Contains("CentOS"))
+            {
+                _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
+            }
+            else if (RuntimeInformation.OSDescription.Contains("Ubuntu"))
+            {
+                _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
+            }
+            else
+            {
+                _libraryDirectory = string.Empty;
+            }
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
