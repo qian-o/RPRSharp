@@ -4,9 +4,9 @@ namespace Tutorials.Models;
 
 public struct Vertex
 {
-    public Vector3 Pos;
+    public Vector3 Position;
 
-    public Vector3 Norm;
+    public Vector3 Normal;
 
-    public Vector2 Tex;
+    public Vector2 TexCoord;
 }

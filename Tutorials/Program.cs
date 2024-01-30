@@ -8,6 +8,6 @@ internal class Program
     {
         Core.Init();
 
-        new BasicScene().Run();
+        new TransformMotionBlur().Run();
     }
 }

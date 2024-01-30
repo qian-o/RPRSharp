@@ -4,6 +4,13 @@ using System.Runtime.InteropServices;
 using RPRSharp;
 using Silk.NET.Core.Native;
 using Tutorials.Models;
+using Assimp = Silk.NET.Assimp.Assimp;
+using AssimpFace = Silk.NET.Assimp.Face;
+using AssimpMesh = Silk.NET.Assimp.Mesh;
+using AssimpNode = Silk.NET.Assimp.Node;
+using AssimpScene = Silk.NET.Assimp.Scene;
+using PostProcessSteps = Silk.NET.Assimp.PostProcessSteps;
+using Scene = RPRSharp.Scene;
 
 namespace Tutorials.Helpers;
 
@@ -11,35 +18,35 @@ public unsafe class RprHelper
 {
     public static Vertex[] Cube =>
     [
-        new Vertex { Pos = new Vector3(-1.0f, 1.0f, -1.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, 1.0f, -1.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, 1.0f, 1.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, 1.0f, 1.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, 1.0f, -1.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, 1.0f, -1.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, 1.0f, 1.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(1.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, 1.0f, 1.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(0.0f, 1.0f) },
 
-        new Vertex { Pos = new Vector3(-1.0f, -1.0f, -1.0f), Norm = new Vector3(0.0f, -1.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, -1.0f, -1.0f), Norm = new Vector3(0.0f, -1.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, -1.0f, 1.0f), Norm = new Vector3(0.0f, -1.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, -1.0f, 1.0f), Norm = new Vector3(0.0f, -1.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, -1.0f, -1.0f), Normal = new Vector3(0.0f, -1.0f, 0.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, -1.0f, -1.0f), Normal = new Vector3(0.0f, -1.0f, 0.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, -1.0f, 1.0f), Normal = new Vector3(0.0f, -1.0f, 0.0f), TexCoord = new Vector2(1.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, -1.0f, 1.0f), Normal = new Vector3(0.0f, -1.0f, 0.0f), TexCoord = new Vector2(0.0f, 1.0f) },
 
-        new Vertex { Pos = new Vector3(-1.0f, -1.0f, 1.0f), Norm = new Vector3(-1.0f, 0.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, -1.0f, -1.0f), Norm = new Vector3(-1.0f, 0.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, 1.0f, -1.0f), Norm = new Vector3(-1.0f, 0.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, 1.0f, 1.0f), Norm = new Vector3(-1.0f, 0.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, -1.0f, 1.0f), Normal = new Vector3(-1.0f, 0.0f, 0.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(-1.0f, -1.0f, -1.0f), Normal = new Vector3(-1.0f, 0.0f, 0.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(-1.0f, 1.0f, -1.0f), Normal = new Vector3(-1.0f, 0.0f, 0.0f), TexCoord = new Vector2(1.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, 1.0f, 1.0f), Normal = new Vector3(-1.0f, 0.0f, 0.0f), TexCoord = new Vector2(0.0f, 1.0f) },
 
-        new Vertex { Pos = new Vector3(1.0f, -1.0f, 1.0f), Norm = new Vector3(1.0f, 0.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, -1.0f, -1.0f), Norm = new Vector3(1.0f, 0.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, 1.0f, -1.0f), Norm = new Vector3(1.0f, 0.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(1.0f, 1.0f, 1.0f), Norm = new Vector3(1.0f, 0.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
+        new Vertex { Position = new Vector3(1.0f, -1.0f, 1.0f), Normal = new Vector3(1.0f, 0.0f, 0.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, -1.0f, -1.0f), Normal = new Vector3(1.0f, 0.0f, 0.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, 1.0f, -1.0f), Normal = new Vector3(1.0f, 0.0f, 0.0f), TexCoord = new Vector2(1.0f, 1.0f) },
+        new Vertex { Position = new Vector3(1.0f, 1.0f, 1.0f), Normal = new Vector3(1.0f, 0.0f, 0.0f), TexCoord = new Vector2(0.0f, 1.0f) },
 
-        new Vertex { Pos = new Vector3(-1.0f, -1.0f, -1.0f), Norm = new Vector3(0.0f, 0.0f, -1.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, -1.0f, -1.0f), Norm = new Vector3(0.0f, 0.0f, -1.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, 1.0f, -1.0f), Norm = new Vector3(0.0f, 0.0f, -1.0f), Tex = new Vector2(1.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, 1.0f, -1.0f), Norm = new Vector3(0.0f, 0.0f, -1.0f), Tex = new Vector2(0.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, -1.0f, -1.0f), Normal = new Vector3(0.0f, 0.0f, -1.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, -1.0f, -1.0f), Normal = new Vector3(0.0f, 0.0f, -1.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, 1.0f, -1.0f), Normal = new Vector3(0.0f, 0.0f, -1.0f), TexCoord = new Vector2(1.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, 1.0f, -1.0f), Normal = new Vector3(0.0f, 0.0f, -1.0f), TexCoord = new Vector2(0.0f, 1.0f) },
 
-        new Vertex { Pos = new Vector3(-1.0f, -1.0f, 1.0f), Norm = new Vector3(0.0f, 0.0f, 1.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, -1.0f, 1.0f), Norm = new Vector3(0.0f, 0.0f, 1.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(1.0f, 1.0f, 1.0f), Norm = new Vector3(0.0f, 0.0f, 1.0f), Tex = new Vector2(1.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-1.0f, 1.0f, 1.0f), Norm = new Vector3(0.0f, 0.0f, 1.0f), Tex = new Vector2(0.0f, 1.0f) }
+        new Vertex { Position = new Vector3(-1.0f, -1.0f, 1.0f), Normal = new Vector3(0.0f, 0.0f, 1.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, -1.0f, 1.0f), Normal = new Vector3(0.0f, 0.0f, 1.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(1.0f, 1.0f, 1.0f), Normal = new Vector3(0.0f, 0.0f, 1.0f), TexCoord = new Vector2(1.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-1.0f, 1.0f, 1.0f), Normal = new Vector3(0.0f, 0.0f, 1.0f), TexCoord = new Vector2(0.0f, 1.0f) }
     ];
 
     public static int[] CubeIndices =>
@@ -67,10 +74,10 @@ public unsafe class RprHelper
 
     public static Vertex[] Plane =>
     [
-        new Vertex { Pos = new Vector3(-15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 1.0f) },
-        new Vertex { Pos = new Vector3(-15.0f, 0.0f, 15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(0.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(15.0f, 0.0f, 15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 0.0f) },
-        new Vertex { Pos = new Vector3(15.0f, 0.0f, -15.0f), Norm = new Vector3(0.0f, 1.0f, 0.0f), Tex = new Vector2(1.0f, 1.0f) }
+        new Vertex { Position = new Vector3(-15.0f, 0.0f, -15.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(0.0f, 1.0f) },
+        new Vertex { Position = new Vector3(-15.0f, 0.0f, 15.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(0.0f, 0.0f) },
+        new Vertex { Position = new Vector3(15.0f, 0.0f, 15.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(1.0f, 0.0f) },
+        new Vertex { Position = new Vector3(15.0f, 0.0f, -15.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(1.0f, 1.0f) }
     ];
 
     public static int[] PlaneIndices =>
@@ -109,8 +116,8 @@ public unsafe class RprHelper
     public static Status CreateMesh(Context context, Vertex[] vertices, int[] indices, int[] numFaceVertices, out Shape shape)
     {
         float* meshVertices = (float*)Unsafe.AsPointer(ref vertices[0]);
-        float* meshNormals = (float*)((byte*)meshVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Norm)));
-        float* meshUVs = (float*)((byte*)meshVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Tex)));
+        float* meshNormals = (float*)((byte*)meshVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.Normal)));
+        float* meshUVs = (float*)((byte*)meshVertices + Marshal.OffsetOf<Vertex>(nameof(Vertex.TexCoord)));
         int* meshIndices = (int*)Unsafe.AsPointer(ref indices[0]);
         int* meshNumVertices = (int*)Unsafe.AsPointer(ref numFaceVertices[0]);
 
@@ -125,7 +132,7 @@ public unsafe class RprHelper
                                      out shape);
     }
 
-    public static Status CreateAMDFloor(Context context, Scene scene, MaterialSystem matsys, RprGarbageCollector gc, float scaleX, float scaleY, float translationX, float translationY, float translationZ)
+    public static Status CreateAMDFloor(Context context, Scene scene, MaterialSystem matsys, RprGarbageCollector gc, float scaleX, float scaleY, float translationX = 0.0f, float translationY = 0.0f, float translationZ = 0.0f)
     {
         try
         {
@@ -206,5 +213,90 @@ public unsafe class RprHelper
         {
             return Status.ERROR_INVALID_PARAMETER;
         }
+    }
+
+    public static unsafe Status AssimpParsing(Context context, RprGarbageCollector gc, string file, out Shape[] shapes)
+    {
+        using Assimp importer = Assimp.GetApi();
+        AssimpScene* assimpScene = importer.ImportFile(file, (uint)(PostProcessSteps.Triangulate | PostProcessSteps.GenerateNormals | PostProcessSteps.CalculateTangentSpace | PostProcessSteps.FlipUVs | PostProcessSteps.PreTransformVertices));
+
+        List<Shape> meshes = [];
+
+        ProcessNode(assimpScene->MRootNode);
+
+        shapes = [.. meshes];
+
+        return Status.SUCCESS;
+
+        void ProcessNode(AssimpNode* node)
+        {
+            for (uint i = 0; i < node->MNumMeshes; i++)
+            {
+                AssimpMesh* mesh = assimpScene->MMeshes[node->MMeshes[i]];
+
+                meshes.Add(ProcessMesh(mesh));
+            }
+
+            for (uint i = 0; i < node->MNumChildren; i++)
+            {
+                ProcessNode(node->MChildren[i]);
+            }
+        }
+
+        Shape ProcessMesh(AssimpMesh* mesh)
+        {
+            Vertex[] vertices = new Vertex[mesh->MNumVertices];
+
+            for (uint i = 0; i < mesh->MNumVertices; i++)
+            {
+                vertices[i].Position = (*&mesh->MVertices[i]);
+                vertices[i].Normal = (*&mesh->MNormals[i]);
+
+                if (mesh->MTextureCoords[0] != null)
+                {
+                    Vector3 texCoord = (*&mesh->MTextureCoords[0][i]);
+
+                    vertices[i].TexCoord = new Vector2(texCoord.X, texCoord.Y);
+                }
+            }
+
+            int[] indices = new int[mesh->MNumFaces * 3];
+            int[] numFaceVertices = new int[mesh->MNumFaces];
+
+            for (uint i = 0; i < mesh->MNumFaces; i++)
+            {
+                AssimpFace face = mesh->MFaces[i];
+
+                for (uint j = 0; j < face.MNumIndices; j++)
+                {
+                    indices[i * 3 + j] = (int)face.MIndices[j];
+                }
+
+                numFaceVertices[i] = (int)face.MNumIndices;
+            }
+
+            CreateMesh(context, vertices, indices, numFaceVertices, out Shape shape);
+            gc.Add(shape);
+
+            return shape;
+        }
+    }
+
+    public static float[] CameraLookAtToMatrix(Vector3 pos, Vector3 at, Vector3 up)
+    {
+        Vector3 dir = Vector3.Normalize(at - pos);
+        Vector3 right = Vector3.Normalize(Vector3.Cross(dir, up));
+
+        // Warning: For rprCameraSetMotionTransform, we need to make sure to have both 'right' and 'up2' correctly orthogonal to 'directionVector'
+        //           otherwise it may result into bad blur rendering.
+        Vector3 up2 = Vector3.Normalize(Vector3.Cross(right, dir));
+
+        return
+        [
+            .. new float[] { right.X, right.Y, right.Z, 0.0f },
+            .. new float[] { up2.X, up2.Y, up2.Z, 0.0f },
+            .. new float[] { -dir.X, -dir.Y, -dir.Z, 0.0f },
+            .. new float[] { pos.X, pos.Y, pos.Z, 1.0f }
+        ];
     }
 }

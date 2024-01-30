@@ -18,4 +18,8 @@
 		</None>
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Silk.NET.Assimp" Version="2.20.0" />
+	</ItemGroup>
+
 </Project>
