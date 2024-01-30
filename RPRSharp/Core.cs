@@ -10,18 +10,21 @@ public static class Core
 
     private static readonly string _libraryDirectory;
     private static readonly Dictionary<string, string> _libraryNameAndPath;
+    private static readonly string _hipBin;
+    private static readonly ContextProperties[] _hipProperties;
 
     static Core()
     {
+        _libraryDirectory = Path.Combine(AppContext.BaseDirectory, AMD_Radeon_ProRender_SDK);
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
             if (RuntimeInformation.OSDescription.Contains("CentOS"))
             {
-                _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binCentOS7");
+                _libraryDirectory = Path.Combine(_libraryDirectory, "binCentOS7");
             }
             else if (RuntimeInformation.OSDescription.Contains("Ubuntu"))
             {
-                _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binUbuntu20");
+                _libraryDirectory = Path.Combine(_libraryDirectory, "binUbuntu20");
             }
             else
             {
@@ -30,11 +33,11 @@ public static class Core
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binMacOS");
+            _libraryDirectory = Path.Combine(_libraryDirectory, "binMacOS");
         }
         else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            _libraryDirectory = Path.Combine(AMD_Radeon_ProRender_SDK, "binWin64");
+            _libraryDirectory = Path.Combine(_libraryDirectory, "binWin64");
         }
         else
         {
@@ -43,14 +46,17 @@ public static class Core
 
         _libraryNameAndPath = new()
         {
-            { nameof(Northstar64), GetLibraryPath(nameof(Northstar64)) },
-            { nameof(ProRenderGLTF), GetLibraryPath(nameof(ProRenderGLTF)) },
-            { nameof(RadeonProRender64), GetLibraryPath(nameof(RadeonProRender64)) },
-            { nameof(RprLoadStore64), GetLibraryPath(nameof(RprLoadStore64)) },
-            { nameof(Tahoe64), GetLibraryPath(nameof(Tahoe64)) },
-            { nameof(RprsRender64), Path.Combine(_libraryDirectory, nameof(RprsRender64)) },
-            { nameof(RprTextureCompiler64), Path.Combine(_libraryDirectory, nameof(RprTextureCompiler64)) }
+            { nameof(Northstar64), GetLibraryPath("Northstar64") },
+            { nameof(ProRenderGLTF), GetLibraryPath("ProRenderGLTF") },
+            { nameof(RadeonProRender64), GetLibraryPath("RadeonProRender64") },
+            { nameof(RprLoadStore64), GetLibraryPath("RprLoadStore64") },
+            { nameof(Tahoe64), GetLibraryPath("Tahoe64") },
+            { nameof(RprsRender64), Path.Combine(_libraryDirectory, "RprsRender64") },
+            { nameof(RprTextureCompiler64), Path.Combine(_libraryDirectory, "RprTextureCompiler64") }
         };
+
+        _hipBin = Path.Combine(AppContext.BaseDirectory, AMD_Radeon_ProRender_SDK, "hipbin");
+        _hipProperties = [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(_hipBin), new()];
     }
 
     public static bool IsInitialized { get; private set; }
@@ -69,9 +75,9 @@ public static class Core
 
     public static string RprTextureCompiler64 => _libraryNameAndPath[nameof(RprTextureCompiler64)];
 
-    public static string HipBin => Path.Combine(AMD_Radeon_ProRender_SDK, "hipbin");
+    public static string HipBin => _hipBin;
 
-    public static ContextProperties[] HipProperties => [new((int)ContextInfo.PRECOMPILED_BINARY_PATH), new(HipBin)];
+    public static ContextProperties[] HipProperties => _hipProperties;
 
     public static void Init()
     {
