@@ -68,9 +68,9 @@ public static unsafe partial class Rpr
         }
     }
 
-    public static Status ContextSetAOV(Context context, Aov aov, Framebuffer frameBuffer)
+    public static Status ContextSetAOV(Context context, Aov aov, Framebuffer framebuffer)
     {
-        return rprContextSetAOV(context, aov, frameBuffer);
+        return rprContextSetAOV(context, aov, framebuffer);
     }
 
     public static Status ContextAttachRenderLayer(Context context, string renderLayerString)
@@ -821,6 +821,14 @@ public static unsafe partial class Rpr
         fixed (long* ptr1 = &sizeRet)
         {
             return rprGridGetInfo(grid, gridInfo, size, data, ptr1);
+        }
+    }
+
+    public static Status BufferGetInfo(Buffer buffer, BufferInfo bufferInfo, long size, void* data, out long sizeRet)
+    {
+        fixed (long* ptr1 = &sizeRet)
+        {
+            return rprBufferGetInfo(buffer, bufferInfo, size, data, ptr1);
         }
     }
 
