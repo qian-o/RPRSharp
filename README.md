@@ -22,7 +22,7 @@ static void Main(string[] _)
 
 private static void RegisterLibrary(Platform platform, out string rprPath)
 {
-    string dir = Path.Combine("AMD Radeon ProRender SDK");
+    string dir = Path.Combine(AppContext.BaseDirectory, "AMD Radeon ProRender SDK");
 
     rprPath = platform switch
     {
