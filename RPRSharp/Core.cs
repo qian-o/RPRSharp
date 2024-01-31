@@ -20,7 +20,7 @@ public static class Core
         {
             Platform platform = GetPlatform();
 
-            if (platform == Platform.None)
+            if (platform == Platform.Unknown)
             {
                 throw new Exception("RPRSharp: Unsupported platform.");
             }
@@ -60,17 +60,17 @@ public static class Core
             return Platform.Windows;
         }
 
-        return Platform.None;
+        return Platform.Unknown;
     }
 
     public static void CheckStatus(this Status status, bool @throw = true)
     {
-        if (status != Status.SUCCESS)
+        if (status != Status.Success)
         {
             StringBuilder stringBuilder = new();
             stringBuilder.AppendLine($"RPRSharp: {status}");
 
-            if (status == Status.ERROR_SHADER_COMPILATION)
+            if (status == Status.ErrorShaderCompilation)
             {
                 stringBuilder.AppendLine("==== KERNEL ERROR ====");
                 stringBuilder.AppendLine("Since Northstar 3.01.00, precompiled kernels must be downloaded from a separate link and inluded in projects.");

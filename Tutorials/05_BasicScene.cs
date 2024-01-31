@@ -80,27 +80,27 @@ public unsafe class BasicScene : BaseTutorial
         // 'frame_buffer' will be used to store the Color AOV.
         // 'frame_buffer_resolved' is the resolution of 'frame_buffer', meaning that 'frame_buffer' is not supposed to be displayed and should only be used internally.
         //                         however 'frame_buffer_resolved' is the correct rendering that can be displayed on the screen. 
-        FrameBufferDesc desc = new()
+        FramebufferDesc desc = new()
         {
             FbWidth = 800,
             FbHeight = 600
         };
-        FrameBufferFormat fmt = new()
+        FramebufferFormat fmt = new()
         {
             NumComponents = 4,
-            Type = ComponentType.FLOAT32
+            Type = ComponentType.Float32
         };
-        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out FrameBuffer frame_buffer).CheckStatus();
-        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out FrameBuffer frame_buffer_resolved).CheckStatus();
+        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out Framebuffer frame_buffer).CheckStatus();
+        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out Framebuffer frame_buffer_resolved).CheckStatus();
 
         // attach 'frame_buffer' to the Color AOV ( this is the main AOV for final rendering )
-        Rpr.ContextSetAOV(context, Aov.COLOR, frame_buffer).CheckStatus();
+        Rpr.ContextSetAOV(context, Aov.Color, frame_buffer).CheckStatus();
 
         // define number of iterations.
         // The higher iterations we use, the better the quality will be.
         // Note that having RPR_CONTEXT_ITERATIONS=N  is pretty much the same thing that calling rprContextRender N times.
         //      However, performances are better when using the RPR_CONTEXT_ITERATIONS.
-        Rpr.ContextSetParameterByKey1u(context, ContextInfo.ITERATIONS, 60).CheckStatus();
+        Rpr.ContextSetParameterByKey1u(context, ContextInfo.Iterations, 60).CheckStatus();
 
         // Start the rendering.
         // Note that this call is synchronous ( as most of the RPR API ).
@@ -155,10 +155,10 @@ public unsafe class BasicScene : BaseTutorial
         // Create a diffuse material
         MaterialNode diffuse1;
         {
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.DIFFUSE, out diffuse1).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse1).CheckStatus();
 
             // set the color
-            Rpr.MaterialNodeSetInputFByKey(diffuse1, MaterialNodeInput.COLOR, 0.6f, 0.4f, 1.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(diffuse1, MaterialNodeInput.InputColor, 0.6f, 0.4f, 1.0f, 0.0f).CheckStatus();
 
             // set it to the cube
             Rpr.ShapeSetMaterial(cube, diffuse1).CheckStatus();
@@ -167,20 +167,20 @@ public unsafe class BasicScene : BaseTutorial
         // Do the same thing for instance and floor
         MaterialNode diffuse2;
         {
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.DIFFUSE, out diffuse2).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse2).CheckStatus();
 
             // set the color
-            Rpr.MaterialNodeSetInputFByKey(diffuse2, MaterialNodeInput.COLOR, 1.0f, 0.5f, 0.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(diffuse2, MaterialNodeInput.InputColor, 1.0f, 0.5f, 0.0f, 0.0f).CheckStatus();
 
             // set it to the cube
             Rpr.ShapeSetMaterial(cube_instance, diffuse2).CheckStatus();
         }
         MaterialNode diffuse3;
         {
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.DIFFUSE, out diffuse3).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse3).CheckStatus();
 
             // set the color
-            Rpr.MaterialNodeSetInputFByKey(diffuse3, MaterialNodeInput.COLOR, 0.1f, 0.8f, 1.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(diffuse3, MaterialNodeInput.InputColor, 0.1f, 0.8f, 1.0f, 0.0f).CheckStatus();
 
             // set it to the cube
             Rpr.ShapeSetMaterial(plane, diffuse3).CheckStatus();
@@ -208,11 +208,11 @@ public unsafe class BasicScene : BaseTutorial
             string pathImageFileA = Path.Combine("Resources", "Textures", "lead_rusted_Base_Color.jpg");
             Rpr.ContextCreateImageFromFile(context, pathImageFileA, out image1).CheckStatus();
 
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.IMAGE_TEXTURE, out materialImage1).CheckStatus();
-            Rpr.MaterialNodeSetInputImageDataByKey(materialImage1, MaterialNodeInput.DATA, image1).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ImageTexture, out materialImage1).CheckStatus();
+            Rpr.MaterialNodeSetInputImageDataByKey(materialImage1, MaterialNodeInput.InputData, image1).CheckStatus();
 
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.DIFFUSE, out diffuse4).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(diffuse4, MaterialNodeInput.COLOR, materialImage1).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse4).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(diffuse4, MaterialNodeInput.InputColor, materialImage1).CheckStatus();
 
             Rpr.ShapeSetMaterial(cube, diffuse4).CheckStatus();
         }
@@ -226,26 +226,26 @@ public unsafe class BasicScene : BaseTutorial
             string pathImageFileA = Path.Combine("Resources", "Textures", "amd.png");
             Rpr.ContextCreateImageFromFile(context, pathImageFileA, out image2).CheckStatus();
 
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.IMAGE_TEXTURE, out materialImage2).CheckStatus();
-            Rpr.MaterialNodeSetInputImageDataByKey(materialImage2, MaterialNodeInput.DATA, image2).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ImageTexture, out materialImage2).CheckStatus();
+            Rpr.MaterialNodeSetInputImageDataByKey(materialImage2, MaterialNodeInput.InputData, image2).CheckStatus();
 
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.DIFFUSE, out diffuse5).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(diffuse5, MaterialNodeInput.COLOR, materialImage2).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse5).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(diffuse5, MaterialNodeInput.InputColor, materialImage2).CheckStatus();
 
             // create a Lookup material and define it as a "UV Lookup" meaning the output of this material is the UV from the shape.
             // Lookup nodes are useful to create procedural materials.
             // UV-Lookup are often used to scale textures on shapes.
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.INPUT_LOOKUP, out uv_node).CheckStatus();
-            Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.VALUE, (uint)MaterialNodeLookup.UV).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.InputLookup, out uv_node).CheckStatus();
+            Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.InputValue, (uint)MaterialNodeLookupValue.Uv).CheckStatus();
 
             // adjust the texture scale by multiplying the the UV by a constant.
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ARITHMETIC, out uv_scaled_node).CheckStatus();
-            Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.OP, (uint)MaterialNodeOp.MUL).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.COLOR0, uv_node).CheckStatus();
-            Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.COLOR1, 6.0f, 12.0f, 0.0f, 0.0f).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Arithmetic, out uv_scaled_node).CheckStatus();
+            Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.InputOp, (uint)MaterialNodeArithmeticOperation.OpMul).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.InputColor0, uv_node).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.InputColor1, 6.0f, 12.0f, 0.0f, 0.0f).CheckStatus();
 
             // apply this modified UV to the image material.
-            Rpr.MaterialNodeSetInputNByKey(materialImage2, MaterialNodeInput.UV, uv_scaled_node).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(materialImage2, MaterialNodeInput.InputUv, uv_scaled_node).CheckStatus();
 
             Rpr.ShapeSetMaterial(plane, diffuse5).CheckStatus();
         }
@@ -253,8 +253,8 @@ public unsafe class BasicScene : BaseTutorial
         // create a simple reflection material and apply it on the cube_instance.
         MaterialNode reflection1;
         {
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.REFLECTION, out reflection1).CheckStatus();
-            Rpr.MaterialNodeSetInputFByKey(reflection1, MaterialNodeInput.COLOR, 1.0f, 1.0f, 1.0f, 0.0f).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Reflection, out reflection1).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(reflection1, MaterialNodeInput.InputColor, 1.0f, 1.0f, 1.0f, 0.0f).CheckStatus();
             Rpr.ShapeSetMaterial(cube_instance, reflection1).CheckStatus();
         }
 
@@ -286,7 +286,7 @@ public unsafe class BasicScene : BaseTutorial
         // modify display gamma. In most of the cases, display gamma should be around 2.2.
         // This makes image brightness looking better on majority of monitors.
         // Gamma is applied during the "rprContextResolveFrameBuffer" call.
-        Rpr.ContextSetParameterByKey1f(context, ContextInfo.DISPLAY_GAMMA, 2.2f).CheckStatus();
+        Rpr.ContextSetParameterByKey1f(context, ContextInfo.DisplayGamma, 2.2f).CheckStatus();
 
         // render the current scene the smae way we did for _05_BasicScene_01.png
         Rpr.FrameBufferClear(frame_buffer).CheckStatus();
@@ -308,13 +308,13 @@ public unsafe class BasicScene : BaseTutorial
         Rpr.ShapeSetTransform(cube_instance, true, cubeMatrix.ToArray(true)).CheckStatus();
 
         // change scaling of the AMD logo on the floor
-        Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.COLOR1, 10.0f, 20.0f, 0.0f, 0.0f).CheckStatus();
+        Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.InputColor1, 10.0f, 20.0f, 0.0f, 0.0f).CheckStatus();
 
         // replace the material on cuve by an emissive one.
         MaterialNode emissive1;
         {
-            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.EMISSIVE, out emissive1).CheckStatus();
-            Rpr.MaterialNodeSetInputFByKey(emissive1, MaterialNodeInput.COLOR, 6.0f, 3.0f, 0.0f, 0.0f).CheckStatus();
+            Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Emissive, out emissive1).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(emissive1, MaterialNodeInput.InputColor, 6.0f, 3.0f, 0.0f, 0.0f).CheckStatus();
             Rpr.ShapeSetMaterial(cube, emissive1).CheckStatus();
         }
 
@@ -322,14 +322,14 @@ public unsafe class BasicScene : BaseTutorial
         cubeMatrix = Matrix4x4.CreateScale(0.5f) * Matrix4x4.CreateRotationY(0.0f) * Matrix4x4.CreateTranslation(-2.0f, 0.7f, 0.0f);
         Rpr.ShapeSetTransform(cube, true, cubeMatrix.ToArray(true)).CheckStatus();
 
-        Rpr.ShapeSetVisibilityFlag(cube, ShapeInfo.VISIBILITY_SHADOW, false).CheckStatus();
+        Rpr.ShapeSetVisibilityFlag(cube, ShapeInfo.VisibilityShadow, false).CheckStatus();
 
         // emove the Env light, and use the point light again.
         Rpr.SceneDetachLight(scene, lightEnv).CheckStatus();
         Rpr.SceneAttachLight(scene, light).CheckStatus();
 
         // slightly increase the iteration count for this scene.
-        Rpr.ContextSetParameterByKey1u(context, ContextInfo.ITERATIONS, 120).CheckStatus();
+        Rpr.ContextSetParameterByKey1u(context, ContextInfo.Iterations, 120).CheckStatus();
 
         // render the current scene the smae way we did for _05_BasicScene_01.png
         Rpr.FrameBufferClear(frame_buffer).CheckStatus();

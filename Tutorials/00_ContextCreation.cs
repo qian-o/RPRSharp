@@ -30,7 +30,7 @@ public unsafe class ContextCreation : BaseTutorial
         Console.WriteLine("RPR Context creation succeeded.");
 
         char* deviceNameGpu0 = stackalloc char[1024];
-        Rpr.ContextGetInfo(context, ContextInfo.GPU0_NAME, 1024, deviceNameGpu0, out _).CheckStatus();
+        Rpr.ContextGetInfo(context, ContextInfo.Gpu0Name, 1024, deviceNameGpu0, out _).CheckStatus();
 
         // Output the name of the GPU
         Console.WriteLine($"GPU0: {SilkMarshal.PtrToString((nint)deviceNameGpu0)}");

@@ -2,38 +2,38 @@
 
 namespace Tutorials.Models;
 
-public class RprGarbageCollector
+public unsafe class RprGarbageCollector
 {
     private readonly List<nint> _rprNodesCollector = [];
 
     public void Add(MaterialNode materialNode)
     {
-        _rprNodesCollector.Add(materialNode.Handle);
+        _rprNodesCollector.Add((nint)materialNode.Handle);
     }
 
     public void Add(Image image)
     {
-        _rprNodesCollector.Add(image.Handle);
+        _rprNodesCollector.Add((nint)image.Handle);
     }
 
     public void Add(Shape shape)
     {
-        _rprNodesCollector.Add(shape.Handle);
+        _rprNodesCollector.Add((nint)shape.Handle);
     }
 
     public void Add(Light light)
     {
-        _rprNodesCollector.Add(light.Handle);
+        _rprNodesCollector.Add((nint)light.Handle);
     }
 
-    public void Add(FrameBuffer frameBuffer)
+    public void Add(Framebuffer frameBuffer)
     {
-        _rprNodesCollector.Add(frameBuffer.Handle);
+        _rprNodesCollector.Add((nint)frameBuffer.Handle);
     }
 
     public void Add(Camera camera)
     {
-        _rprNodesCollector.Add(camera.Handle);
+        _rprNodesCollector.Add((nint)camera.Handle);
     }
 
     public void Clear()

@@ -30,24 +30,24 @@ public unsafe class ParametersEnumeration : BaseTutorial
             Console.WriteLine("=== CONTEXT PARAMETERS ===");
 
             long parameterCount = 0;
-            Rpr.ContextGetInfo(context, ContextInfo.PARAMETER_COUNT, sizeof(long), &parameterCount, out _).CheckStatus();
+            Rpr.ContextGetInfo(context, ContextInfo.ParameterCount, sizeof(long), &parameterCount, out _).CheckStatus();
 
             Console.WriteLine($"    Parameter Count: {parameterCount}");
 
             for (int i = 0; i < parameterCount; i++)
             {
                 ContextInfo paramID;
-                Rpr.ContextGetParameterInfo(context, i, ParameterInfo.NAME, sizeof(ContextInfo), &paramID, out _).CheckStatus();
+                Rpr.ContextGetParameterInfo(context, i, ParameterInfo.Name, sizeof(ContextInfo), &paramID, out _).CheckStatus();
 
                 ParameterType paramType;
-                Rpr.ContextGetParameterInfo(context, i, ParameterInfo.TYPE, sizeof(ParameterType), &paramType, out _).CheckStatus();
+                Rpr.ContextGetParameterInfo(context, i, ParameterInfo.Type, sizeof(ParameterType), &paramType, out _).CheckStatus();
 
-                Rpr.ContextGetParameterInfo(context, i, ParameterInfo.VALUE, 0, null, out long paramValueSize).CheckStatus();
+                Rpr.ContextGetParameterInfo(context, i, ParameterInfo.Value, 0, null, out long paramValueSize).CheckStatus();
 
                 byte[] value = new byte[paramValueSize];
                 fixed (byte* valuePtr = value)
                 {
-                    Rpr.ContextGetParameterInfo(context, i, ParameterInfo.VALUE, paramValueSize, valuePtr, out _).CheckStatus();
+                    Rpr.ContextGetParameterInfo(context, i, ParameterInfo.Value, paramValueSize, valuePtr, out _).CheckStatus();
                 }
 
                 Console.WriteLine($"        {paramID} ({paramType}) = ".ToLower() + RprHelper.GetValue(paramType, value));
@@ -58,7 +58,7 @@ public unsafe class ParametersEnumeration : BaseTutorial
         Rpr.ContextCreateMaterialSystem(context, 0, out MaterialSystem materialSystem).CheckStatus();
 
         // Create a MICROFACET material
-        Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.MICROFACET, out MaterialNode materialNode).CheckStatus();
+        Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.Microfacet, out MaterialNode materialNode).CheckStatus();
 
         // List parameters from rpr_material
         {
@@ -66,35 +66,35 @@ public unsafe class ParametersEnumeration : BaseTutorial
 
             // Get the number of parameters for the material
             long parameterCount = 0;
-            Rpr.MaterialNodeGetInfo(materialNode, MaterialNodeInfo.INPUT_COUNT, sizeof(long), &parameterCount, out _).CheckStatus();
+            Rpr.MaterialNodeGetInfo(materialNode, MaterialNodeInfo.InputCount, sizeof(long), &parameterCount, out _).CheckStatus();
 
             Console.WriteLine($"    Parameter Count: {parameterCount}");
 
             // get the material type.
             MaterialNodeType materialType;
-            Rpr.MaterialNodeGetInfo(materialNode, MaterialNodeInfo.TYPE, sizeof(MaterialNodeType), &materialType, out _).CheckStatus();
+            Rpr.MaterialNodeGetInfo(materialNode, MaterialNodeInfo.Type, sizeof(MaterialNodeType), &materialType, out _).CheckStatus();
 
             // For each parameter
             for (int i = 0; i < parameterCount; i++)
             {
                 MaterialNodeInput paramID;
-                Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.NAME, sizeof(MaterialNodeInput), &paramID, out _).CheckStatus();
+                Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.Name, sizeof(MaterialNodeInput), &paramID, out _).CheckStatus();
 
                 MaterialNodeInputType nodeInputType;
-                Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.TYPE, sizeof(MaterialNodeInputType), &nodeInputType, out _).CheckStatus();
+                Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.Type, sizeof(MaterialNodeInputType), &nodeInputType, out _).CheckStatus();
 
-                Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.VALUE, 0, null, out long paramValueSize).CheckStatus();
+                Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.Value, 0, null, out long paramValueSize).CheckStatus();
 
                 byte[] value = new byte[paramValueSize];
                 fixed (byte* valuePtr = value)
                 {
-                    Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.VALUE, paramValueSize, valuePtr, out _).CheckStatus();
+                    Rpr.MaterialNodeGetInputInfo(materialNode, i, MaterialNodeInputInfo.Value, paramValueSize, valuePtr, out _).CheckStatus();
 
-                    if (nodeInputType == MaterialNodeInputType.NODE)
+                    if (nodeInputType == MaterialNodeInputType.Node)
                     {
                         MaterialNode* node = (MaterialNode*)valuePtr;
 
-                        if ((*node).Handle != 0)
+                        if ((*node).Handle != null)
                         {
                             Console.WriteLine($"        {paramID} = ".ToLower() + $"material:{*node}");
                         }
@@ -103,7 +103,7 @@ public unsafe class ParametersEnumeration : BaseTutorial
                             Console.WriteLine($"        {paramID} = ".ToLower() + "null-material");
                         }
                     }
-                    else if (nodeInputType == MaterialNodeInputType.FLOAT4)
+                    else if (nodeInputType == MaterialNodeInputType.Float4)
                     {
                         Console.WriteLine($"        {paramID} = ".ToLower() + new Vector4(BitConverter.ToSingle(value), BitConverter.ToSingle(value, 4), BitConverter.ToSingle(value, 8), BitConverter.ToSingle(value, 12)));
                     }

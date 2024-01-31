@@ -47,25 +47,25 @@ public class TransformMotionBlur : BaseTutorial
         Rpr.SceneSetCamera(scene, camera).CheckStatus();
 
         // Create framebuffer
-        FrameBufferDesc desc = new()
+        FramebufferDesc desc = new()
         {
             FbWidth = 800,
             FbHeight = 600
         };
-        FrameBufferFormat fmt = new()
+        FramebufferFormat fmt = new()
         {
             NumComponents = 4,
-            Type = ComponentType.FLOAT32
+            Type = ComponentType.Float32
         };
 
-        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out FrameBuffer fb_color).CheckStatus();
-        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out FrameBuffer fb_color_resolved).CheckStatus();
-        Rpr.ContextSetAOV(context, Aov.COLOR, fb_color).CheckStatus();
+        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out Framebuffer fb_color).CheckStatus();
+        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out Framebuffer fb_color_resolved).CheckStatus();
+        Rpr.ContextSetAOV(context, Aov.Color, fb_color).CheckStatus();
 
         // Optional : add a Velocity AOV. this could be useful for debugging or post processing
-        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out FrameBuffer fb_velocity).CheckStatus();
-        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out FrameBuffer fb_velocity_resolved).CheckStatus();
-        Rpr.ContextSetAOV(context, Aov.VELOCITY, fb_velocity).CheckStatus();
+        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out Framebuffer fb_velocity).CheckStatus();
+        Rpr.ContextCreateFrameBuffer(context, fmt, desc, out Framebuffer fb_velocity_resolved).CheckStatus();
+        Rpr.ContextSetAOV(context, Aov.Velocity, fb_velocity).CheckStatus();
 
         RprGarbageCollector gc = new();
 
@@ -95,17 +95,17 @@ public class TransformMotionBlur : BaseTutorial
         {
             string textestFile = Path.Combine("Resources", "Textures", "textest.png");
 
-            Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.DIFFUSE, out diffuse1).CheckStatus();
+            Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.Diffuse, out diffuse1).CheckStatus();
             Rpr.ContextCreateImageFromFile(context, textestFile, out img).CheckStatus();
-            Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.IMAGE_TEXTURE, out imgSampler).CheckStatus();
-            Rpr.MaterialNodeSetInputImageDataByKey(imgSampler, MaterialNodeInput.DATA, img).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(diffuse1, MaterialNodeInput.COLOR, imgSampler).CheckStatus();
+            Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.ImageTexture, out imgSampler).CheckStatus();
+            Rpr.MaterialNodeSetInputImageDataByKey(imgSampler, MaterialNodeInput.InputData, img).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(diffuse1, MaterialNodeInput.InputColor, imgSampler).CheckStatus();
             Rpr.ShapeSetMaterial(teapot01, diffuse1).CheckStatus();
         }
 
         // First, Render scene without any motion blur
-        Rpr.ContextSetParameterByKey1f(context, ContextInfo.DISPLAY_GAMMA, 2.2f).CheckStatus();
-        Rpr.ContextSetParameterByKey1u(context, ContextInfo.ITERATIONS, 200).CheckStatus();
+        Rpr.ContextSetParameterByKey1f(context, ContextInfo.DisplayGamma, 2.2f).CheckStatus();
+        Rpr.ContextSetParameterByKey1u(context, ContextInfo.Iterations, 200).CheckStatus();
         Rpr.ContextRender(context).CheckStatus();
         Rpr.ContextResolveFrameBuffer(context, fb_color, fb_color_resolved, false).CheckStatus();
         Rpr.ContextResolveFrameBuffer(context, fb_velocity, fb_velocity_resolved, true).CheckStatus();

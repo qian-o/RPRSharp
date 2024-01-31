@@ -20,9 +20,9 @@ public unsafe class RprHelper
     {
         ContextProperties =
         [
-            new ContextProperties((int)ContextInfo.PRECOMPILED_BINARY_PATH),
-            new ContextProperties(Path.Combine("AMD Radeon ProRender SDK", "hipbin")),
-            new ContextProperties(0)
+            Int32ToContextProperties((int)ContextInfo.PrecompiledBinaryPath),
+            StringToContextProperties(Path.Combine("AMD Radeon ProRender SDK", "hipbin")),
+            Int32ToContextProperties(0)
         ];
 
         Northstar64 = Core.GetPlatform() switch
@@ -37,7 +37,7 @@ public unsafe class RprHelper
 
     public static ApiVersion ApiVersion => new(3, 1, 5);
 
-    public static CreationFlags ContextCreationFlags => CreationFlags.ENABLE_GPU1;
+    public static CreationFlags ContextCreationFlags => CreationFlags.EnableGpu1;
 
     public static ContextProperties[] ContextProperties { get; }
 
@@ -127,14 +127,14 @@ public unsafe class RprHelper
         {
             return parameterType switch
             {
-                ParameterType.FLOAT => BitConverter.ToSingle(bytes),
-                ParameterType.FLOAT2 => new Vector2(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4)),
-                ParameterType.FLOAT3 => new Vector3(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4), BitConverter.ToSingle(bytes, 8)),
-                ParameterType.FLOAT4 => new Vector4(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4), BitConverter.ToSingle(bytes, 8), BitConverter.ToSingle(bytes, 12)),
-                ParameterType.STRING => SilkMarshal.PtrToString((nint)bytesPtr),
-                ParameterType.UINT => BitConverter.ToUInt32(bytes),
-                ParameterType.ULONG => BitConverter.ToUInt64(bytes),
-                ParameterType.LONGLONG => BitConverter.ToInt64(bytes),
+                ParameterType.Float => BitConverter.ToSingle(bytes),
+                ParameterType.Float2 => new Vector2(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4)),
+                ParameterType.Float3 => new Vector3(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4), BitConverter.ToSingle(bytes, 8)),
+                ParameterType.Float4 => new Vector4(BitConverter.ToSingle(bytes), BitConverter.ToSingle(bytes, 4), BitConverter.ToSingle(bytes, 8), BitConverter.ToSingle(bytes, 12)),
+                ParameterType.String => SilkMarshal.PtrToString((nint)bytesPtr),
+                ParameterType.Uint => BitConverter.ToUInt32(bytes),
+                ParameterType.Ulong => BitConverter.ToUInt64(bytes),
+                ParameterType.Longlong => BitConverter.ToInt64(bytes),
                 _ => bytes,
             };
         }
@@ -183,34 +183,34 @@ public unsafe class RprHelper
                 Rpr.ContextCreateImageFromFile(context, pathImageFile, out Image image).CheckStatus();
                 gc.Add(image);
 
-                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.IMAGE_TEXTURE, out MaterialNode materialImage).CheckStatus();
+                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ImageTexture, out MaterialNode materialImage).CheckStatus();
                 gc.Add(materialImage);
-                Rpr.MaterialNodeSetInputImageDataByKey(materialImage, MaterialNodeInput.DATA, image);
+                Rpr.MaterialNodeSetInputImageDataByKey(materialImage, MaterialNodeInput.InputData, image);
 
-                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.DIFFUSE, out MaterialNode diffuse).CheckStatus();
+                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out MaterialNode diffuse).CheckStatus();
                 gc.Add(diffuse);
-                Rpr.MaterialNodeSetInputNByKey(diffuse, MaterialNodeInput.COLOR, materialImage);
+                Rpr.MaterialNodeSetInputNByKey(diffuse, MaterialNodeInput.InputColor, materialImage);
 
-                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.INPUT_LOOKUP, out MaterialNode uv_node).CheckStatus();
+                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.InputLookup, out MaterialNode uv_node).CheckStatus();
                 gc.Add(uv_node);
-                Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.VALUE, (uint)MaterialNodeLookup.UV);
+                Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.InputValue, (uint)MaterialNodeLookupValue.Uv);
 
-                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ARITHMETIC, out MaterialNode uv_scaled_node).CheckStatus();
+                Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Arithmetic, out MaterialNode uv_scaled_node).CheckStatus();
                 gc.Add(uv_scaled_node);
-                Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.OP, (uint)MaterialNodeOp.MUL).CheckStatus();
-                Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.COLOR0, uv_node).CheckStatus();
-                Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.COLOR1, 2.0f, 4.0f, 0.0f, 0.0f).CheckStatus();
+                Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.InputOp, (uint)MaterialNodeArithmeticOperation.OpMul).CheckStatus();
+                Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.InputColor0, uv_node).CheckStatus();
+                Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.InputColor1, 2.0f, 4.0f, 0.0f, 0.0f).CheckStatus();
 
-                Rpr.MaterialNodeSetInputNByKey(materialImage, MaterialNodeInput.UV, uv_scaled_node).CheckStatus();
+                Rpr.MaterialNodeSetInputNByKey(materialImage, MaterialNodeInput.InputUv, uv_scaled_node).CheckStatus();
 
                 Rpr.ShapeSetMaterial(plane, diffuse);
             }
 
-            return Status.SUCCESS;
+            return Status.Success;
         }
         catch (Exception)
         {
-            return Status.ERROR_INVALID_PARAMETER;
+            return Status.ErrorInvalidParameter;
         }
     }
 
@@ -234,11 +234,11 @@ public unsafe class RprHelper
             // Set the Env light as the environment light of the scene.
             Rpr.SceneAttachLight(scene, lightEnv).CheckStatus();
 
-            return Status.SUCCESS;
+            return Status.Success;
         }
         catch (Exception)
         {
-            return Status.ERROR_INVALID_PARAMETER;
+            return Status.ErrorInvalidParameter;
         }
     }
 
@@ -253,7 +253,7 @@ public unsafe class RprHelper
 
         shapes = [.. meshes];
 
-        return Status.SUCCESS;
+        return Status.Success;
 
         void ProcessNode(AssimpNode* node)
         {
@@ -325,5 +325,15 @@ public unsafe class RprHelper
             .. new float[] { -dir.X, -dir.Y, -dir.Z, 0.0f },
             .. new float[] { pos.X, pos.Y, pos.Z, 1.0f }
         ];
+    }
+
+    public static ContextProperties Int32ToContextProperties(int i)
+    {
+        return new ContextProperties() { Handle = (void*)i };
+    }
+
+    public static ContextProperties StringToContextProperties(string str)
+    {
+        return new ContextProperties() { Handle = (void*)Marshal.StringToHGlobalAnsi(str) };
     }
 }
