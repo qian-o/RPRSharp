@@ -7,8 +7,4 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Silk.NET.Core" Version="2.20.0" />
-	</ItemGroup>
-
 </Project>

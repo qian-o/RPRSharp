@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Silk.NET.Core.Native;
+using System.Runtime.InteropServices;
 
 namespace RPRSharp;
 
@@ -12,11 +12,11 @@ public static unsafe partial class Rpr
 
     public static int RegisterPlugin(string path)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(path);
+        char* ptr1 = (char*)StringToPtr(path);
 
         int pluginId = rprRegisterPlugin(ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return pluginId;
     }
@@ -29,11 +29,11 @@ public static unsafe partial class Rpr
         fixed (ContextProperties* ptr2 = props)
         fixed (Context* ptr3 = &context)
         {
-            char* ptr4 = (char*)SilkMarshal.StringToPtr(cachePath);
+            char* ptr4 = (char*)StringToPtr(cachePath);
 
             Status status = rprCreateContext(version, ptr1, pluginCount, (uint)creationFlags, ptr2, ptr4, ptr3);
 
-            SilkMarshal.Free((nint)ptr4);
+            Free((nint)ptr4);
 
             return status;
         }
@@ -75,33 +75,33 @@ public static unsafe partial class Rpr
 
     public static Status ContextAttachRenderLayer(Context context, string renderLayerString)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(renderLayerString);
+        char* ptr1 = (char*)StringToPtr(renderLayerString);
 
         Status status = rprContextAttachRenderLayer(context, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextDetachRenderLayer(Context context, string renderLayerString)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(renderLayerString);
+        char* ptr1 = (char*)StringToPtr(renderLayerString);
 
         Status status = rprContextDetachRenderLayer(context, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status FrameBufferSetLPE(Framebuffer frame_buffer, string lpe)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(lpe);
+        char* ptr1 = (char*)StringToPtr(lpe);
 
         Status status = rprFrameBufferSetLPE(frame_buffer, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -126,11 +126,11 @@ public static unsafe partial class Rpr
 
     public static Status ContextSetUserTexture(Context context, int index, string gpuCode, void* cpuCode)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(gpuCode);
+        char* ptr1 = (char*)StringToPtr(gpuCode);
 
         Status status = rprContextSetUserTexture(context, index, ptr1, cpuCode);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -183,78 +183,78 @@ public static unsafe partial class Rpr
 
     public static Status ContextSetParameterByKeyString(Context context, ContextInfo inInput, string value)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(value);
+        char* ptr1 = (char*)StringToPtr(value);
 
         Status status = rprContextSetParameterByKeyString(context, inInput, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextSetInternalParameter4f(Context context, uint pluginIndex, string paramName, float x, float y, float z, float w)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(paramName);
+        char* ptr1 = (char*)StringToPtr(paramName);
 
         Status status = rprContextSetInternalParameter4f(context, pluginIndex, ptr1, x, y, z, w);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextSetInternalParameter1u(Context context, uint pluginIndex, string paramName, uint x)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(paramName);
+        char* ptr1 = (char*)StringToPtr(paramName);
 
         Status status = rprContextSetInternalParameter1u(context, pluginIndex, ptr1, x);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextSetInternalParameterBuffer(Context context, uint pluginIndex, string paramName, void* buffer, long bufferSizeByte)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(paramName);
+        char* ptr1 = (char*)StringToPtr(paramName);
 
         Status status = rprContextSetInternalParameterBuffer(context, pluginIndex, ptr1, buffer, bufferSizeByte);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextGetInternalParameter4f(Context context, uint pluginIndex, string paramName, float* x, float* y, float* z, float* w)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(paramName);
+        char* ptr1 = (char*)StringToPtr(paramName);
 
         Status status = rprContextGetInternalParameter4f(context, pluginIndex, ptr1, x, y, z, w);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextGetInternalParameter1u(Context context, uint pluginIndex, string paramName, uint* x)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(paramName);
+        char* ptr1 = (char*)StringToPtr(paramName);
 
         Status status = rprContextGetInternalParameter1u(context, pluginIndex, ptr1, x);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ContextGetInternalParameterBuffer(Context context, uint pluginIndex, string paramName, long bufferSizeByte, void* buffer, out long sizeRet)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(paramName);
+        char* ptr1 = (char*)StringToPtr(paramName);
         fixed (long* ptr2 = &sizeRet)
         {
             Status status = rprContextGetInternalParameterBuffer(context, pluginIndex, ptr1, bufferSizeByte, buffer, ptr2);
 
-            SilkMarshal.Free((nint)ptr1);
+            Free((nint)ptr1);
 
             return status;
         }
@@ -298,12 +298,12 @@ public static unsafe partial class Rpr
 
     public static Status ContextCreateImageFromFile(Context context, string path, out Image image)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(path);
+        char* ptr1 = (char*)StringToPtr(path);
         fixed (Image* ptr2 = &image)
         {
             Status status = rprContextCreateImageFromFile(context, ptr1, ptr2);
 
-            SilkMarshal.Free((nint)ptr1);
+            Free((nint)ptr1);
 
             return status;
         }
@@ -311,12 +311,12 @@ public static unsafe partial class Rpr
 
     public static Status ContextCreateImageFromFileMemory(Context context, string extension, void* data, long dataSizeByte, out Image image)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(extension);
+        char* ptr1 = (char*)StringToPtr(extension);
         fixed (Image* ptr2 = &image)
         {
             Status status = rprContextCreateImageFromFileMemory(context, ptr1, data, dataSizeByte, ptr2);
 
-            SilkMarshal.Free((nint)ptr1);
+            Free((nint)ptr1);
 
             return status;
         }
@@ -380,12 +380,12 @@ public static unsafe partial class Rpr
 
     public static Status ContextGetFunctionPtr(Context context, string functionName, out nint outFunctionPtr)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(functionName);
+        char* ptr1 = (char*)StringToPtr(functionName);
         fixed (nint* ptr2 = &outFunctionPtr)
         {
             Status status = rprContextGetFunctionPtr(context, ptr1, (void**)ptr2);
 
-            SilkMarshal.Free((nint)ptr1);
+            Free((nint)ptr1);
 
             return status;
         }
@@ -530,11 +530,11 @@ public static unsafe partial class Rpr
 
     public static Status ImageSetOcioColorspace(Image image, string ocioColorspace)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(ocioColorspace);
+        char* ptr1 = (char*)StringToPtr(ocioColorspace);
 
         Status status = rprImageSetOcioColorspace(image, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -601,44 +601,44 @@ public static unsafe partial class Rpr
 
     public static Status ShapeAttachRenderLayer(Shape shape, string renderLayerString)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(renderLayerString);
+        char* ptr1 = (char*)StringToPtr(renderLayerString);
 
         Status status = rprShapeAttachRenderLayer(shape, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status ShapeDetachRenderLayer(Shape shape, string renderLayerString)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(renderLayerString);
+        char* ptr1 = (char*)StringToPtr(renderLayerString);
 
         Status status = rprShapeDetachRenderLayer(shape, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status LightAttachRenderLayer(Light light, string renderLayerString)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(renderLayerString);
+        char* ptr1 = (char*)StringToPtr(renderLayerString);
 
         Status status = rprLightAttachRenderLayer(light, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status LightDetachRenderLayer(Light light, string renderLayerString)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(renderLayerString);
+        char* ptr1 = (char*)StringToPtr(renderLayerString);
 
         Status status = rprLightDetachRenderLayer(light, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -1034,22 +1034,22 @@ public static unsafe partial class Rpr
 
     public static Status IESLightSetImageFromFile(Light env_light, string imagePath, int nx, int ny)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(imagePath);
+        char* ptr1 = (char*)StringToPtr(imagePath);
 
         Status status = rprIESLightSetImageFromFile(env_light, ptr1, nx, ny);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status IESLightSetImageFromIESdata(Light env_light, string iesData, int nx, int ny)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(iesData);
+        char* ptr1 = (char*)StringToPtr(iesData);
 
         Status status = rprIESLightSetImageFromIESdata(env_light, ptr1, nx, ny);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -1213,22 +1213,22 @@ public static unsafe partial class Rpr
 
     public static Status FrameBufferSaveToFile(Framebuffer framebuffer, string filePath)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(filePath);
+        char* ptr1 = (char*)StringToPtr(filePath);
 
         Status status = rprFrameBufferSaveToFile(framebuffer, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status FrameBufferSaveToFileEx(Framebuffer* framebufferList, uint framebufferCount, string filePath, void* extraOptions)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(filePath);
+        char* ptr1 = (char*)StringToPtr(filePath);
 
         Status status = rprFrameBufferSaveToFileEx(framebufferList, framebufferCount, ptr1, extraOptions);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -1341,12 +1341,12 @@ public static unsafe partial class Rpr
 
     public static Status ContextCreateLUTFromFile(Context context, string fileLutPath, out Lut lut)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(fileLutPath);
+        char* ptr1 = (char*)StringToPtr(fileLutPath);
         fixed (Lut* ptr2 = &lut)
         {
             Status status = rprContextCreateLUTFromFile(context, ptr1, ptr2);
 
-            SilkMarshal.Free((nint)ptr1);
+            Free((nint)ptr1);
 
             return status;
         }
@@ -1354,12 +1354,12 @@ public static unsafe partial class Rpr
 
     public static Status ContextCreateLUTFromData(Context context, string lutData, out Lut lut)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(lutData);
+        char* ptr1 = (char*)StringToPtr(lutData);
         fixed (Lut* ptr2 = &lut)
         {
             Status status = rprContextCreateLUTFromData(context, ptr1, ptr2);
 
-            SilkMarshal.Free((nint)ptr1);
+            Free((nint)ptr1);
 
             return status;
         }
@@ -1367,66 +1367,66 @@ public static unsafe partial class Rpr
 
     public static Status CompositeSetInputFb(Composite composite, string inputName, Framebuffer input)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(inputName);
+        char* ptr1 = (char*)StringToPtr(inputName);
 
         Status status = rprCompositeSetInputFb(composite, ptr1, input);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status CompositeSetInputC(Composite composite, string inputName, Composite input)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(inputName);
+        char* ptr1 = (char*)StringToPtr(inputName);
 
         Status status = rprCompositeSetInputC(composite, ptr1, input);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status CompositeSetInputLUT(Composite composite, string inputName, Lut input)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(inputName);
+        char* ptr1 = (char*)StringToPtr(inputName);
 
         Status status = rprCompositeSetInputLUT(composite, ptr1, input);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status CompositeSetInput4f(Composite composite, string inputName, float x, float y, float z, float w)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(inputName);
+        char* ptr1 = (char*)StringToPtr(inputName);
 
         Status status = rprCompositeSetInput4f(composite, ptr1, x, y, z, w);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status CompositeSetInput1u(Composite composite, string inputName, uint value)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(inputName);
+        char* ptr1 = (char*)StringToPtr(inputName);
 
         Status status = rprCompositeSetInput1u(composite, ptr1, value);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status CompositeSetInputOp(Composite composite, string inputName, MaterialNodeArithmeticOperation op)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(inputName);
+        char* ptr1 = (char*)StringToPtr(inputName);
 
         Status status = rprCompositeSetInputOp(composite, ptr1, op);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -1464,11 +1464,11 @@ public static unsafe partial class Rpr
 
     public static Status ObjectSetName(void* node, string name)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(name);
+        char* ptr1 = (char*)StringToPtr(name);
 
         Status status = rprObjectSetName(node, ptr1);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -1506,44 +1506,44 @@ public static unsafe partial class Rpr
 
     public static Status PostEffectSetParameter1u(PostEffect effect, string name, uint x)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(name);
+        char* ptr1 = (char*)StringToPtr(name);
 
         Status status = rprPostEffectSetParameter1u(effect, ptr1, x);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status PostEffectSetParameter1f(PostEffect effect, string name, float x)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(name);
+        char* ptr1 = (char*)StringToPtr(name);
 
         Status status = rprPostEffectSetParameter1f(effect, ptr1, x);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status PostEffectSetParameter3f(PostEffect effect, string name, float x, float y, float z)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(name);
+        char* ptr1 = (char*)StringToPtr(name);
 
         Status status = rprPostEffectSetParameter3f(effect, ptr1, x, y, z);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
 
     public static Status PostEffectSetParameter4f(PostEffect effect, string name, float x, float y, float z, float w)
     {
-        char* ptr1 = (char*)SilkMarshal.StringToPtr(name);
+        char* ptr1 = (char*)StringToPtr(name);
 
         Status status = rprPostEffectSetParameter4f(effect, ptr1, x, y, z, w);
 
-        SilkMarshal.Free((nint)ptr1);
+        Free((nint)ptr1);
 
         return status;
     }
@@ -1650,5 +1650,15 @@ public static unsafe partial class Rpr
     public static Status HeteroVolumeSetDensityScale(HeteroVolume heteroVolume, float scale)
     {
         return rprHeteroVolumeSetDensityScale(heteroVolume, scale);
+    }
+
+    private static nint StringToPtr(string str)
+    {
+        return Marshal.StringToHGlobalAnsi(str);
+    }
+
+    private static void Free(nint ptr)
+    {
+        Marshal.FreeHGlobal(ptr);
     }
 }
