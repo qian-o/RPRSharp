@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.InteropServices;
 using Silk.NET.Core.Native;
 
 namespace RPRSharp;
