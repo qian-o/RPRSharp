@@ -12,9 +12,11 @@
 		<Title>$(AssemblyName)</Title>
 		<Version>3.1.5-alpha</Version>
 		<Authors>qian-o</Authors>
+		<Copyright>MIT</Copyright>
 		<Description>Radeon Pro Render ported to C# bindings.</Description>
 		<RepositoryUrl>https://github.com/qian-o/RPRSharp</RepositoryUrl>
-		<PackageTags>RadeonProRender;RPR</PackageTags>
+		<PackageProjectUrl>https://github.com/qian-o/RPRSharp</PackageProjectUrl>
+		<PackageTags>RadeonProRender;RadeonProRenderSDK;RPRSharp;RPR</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
