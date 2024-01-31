@@ -185,23 +185,23 @@ public unsafe class RprHelper
 
                 Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ImageTexture, out MaterialNode materialImage).CheckStatus();
                 gc.Add(materialImage);
-                Rpr.MaterialNodeSetInputImageDataByKey(materialImage, MaterialNodeInput.InputData, image);
+                Rpr.MaterialNodeSetInputImageDataByKey(materialImage, MaterialNodeInput.Data, image);
 
                 Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out MaterialNode diffuse).CheckStatus();
                 gc.Add(diffuse);
-                Rpr.MaterialNodeSetInputNByKey(diffuse, MaterialNodeInput.InputColor, materialImage);
+                Rpr.MaterialNodeSetInputNByKey(diffuse, MaterialNodeInput.Color, materialImage);
 
                 Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.InputLookup, out MaterialNode uv_node).CheckStatus();
                 gc.Add(uv_node);
-                Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.InputValue, (uint)MaterialNodeLookupValue.Uv);
+                Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.Value, (uint)MaterialNodeLookupValue.Uv);
 
                 Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Arithmetic, out MaterialNode uv_scaled_node).CheckStatus();
                 gc.Add(uv_scaled_node);
-                Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.InputOp, (uint)MaterialNodeArithmeticOperation.OpMul).CheckStatus();
-                Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.InputColor0, uv_node).CheckStatus();
-                Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.InputColor1, 2.0f, 4.0f, 0.0f, 0.0f).CheckStatus();
+                Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.Op, (uint)MaterialNodeArithmeticOperation.Mul).CheckStatus();
+                Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.Color0, uv_node).CheckStatus();
+                Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.Color1, 2.0f, 4.0f, 0.0f, 0.0f).CheckStatus();
 
-                Rpr.MaterialNodeSetInputNByKey(materialImage, MaterialNodeInput.InputUv, uv_scaled_node).CheckStatus();
+                Rpr.MaterialNodeSetInputNByKey(materialImage, MaterialNodeInput.Uv, uv_scaled_node).CheckStatus();
 
                 Rpr.ShapeSetMaterial(plane, diffuse);
             }

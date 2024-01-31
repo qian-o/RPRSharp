@@ -158,7 +158,7 @@ public unsafe class BasicScene : BaseTutorial
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse1).CheckStatus();
 
             // set the color
-            Rpr.MaterialNodeSetInputFByKey(diffuse1, MaterialNodeInput.InputColor, 0.6f, 0.4f, 1.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(diffuse1, MaterialNodeInput.Color, 0.6f, 0.4f, 1.0f, 0.0f).CheckStatus();
 
             // set it to the cube
             Rpr.ShapeSetMaterial(cube, diffuse1).CheckStatus();
@@ -170,7 +170,7 @@ public unsafe class BasicScene : BaseTutorial
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse2).CheckStatus();
 
             // set the color
-            Rpr.MaterialNodeSetInputFByKey(diffuse2, MaterialNodeInput.InputColor, 1.0f, 0.5f, 0.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(diffuse2, MaterialNodeInput.Color, 1.0f, 0.5f, 0.0f, 0.0f).CheckStatus();
 
             // set it to the cube
             Rpr.ShapeSetMaterial(cube_instance, diffuse2).CheckStatus();
@@ -180,7 +180,7 @@ public unsafe class BasicScene : BaseTutorial
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse3).CheckStatus();
 
             // set the color
-            Rpr.MaterialNodeSetInputFByKey(diffuse3, MaterialNodeInput.InputColor, 0.1f, 0.8f, 1.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(diffuse3, MaterialNodeInput.Color, 0.1f, 0.8f, 1.0f, 0.0f).CheckStatus();
 
             // set it to the cube
             Rpr.ShapeSetMaterial(plane, diffuse3).CheckStatus();
@@ -209,10 +209,10 @@ public unsafe class BasicScene : BaseTutorial
             Rpr.ContextCreateImageFromFile(context, pathImageFileA, out image1).CheckStatus();
 
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ImageTexture, out materialImage1).CheckStatus();
-            Rpr.MaterialNodeSetInputImageDataByKey(materialImage1, MaterialNodeInput.InputData, image1).CheckStatus();
+            Rpr.MaterialNodeSetInputImageDataByKey(materialImage1, MaterialNodeInput.Data, image1).CheckStatus();
 
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse4).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(diffuse4, MaterialNodeInput.InputColor, materialImage1).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(diffuse4, MaterialNodeInput.Color, materialImage1).CheckStatus();
 
             Rpr.ShapeSetMaterial(cube, diffuse4).CheckStatus();
         }
@@ -227,25 +227,25 @@ public unsafe class BasicScene : BaseTutorial
             Rpr.ContextCreateImageFromFile(context, pathImageFileA, out image2).CheckStatus();
 
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.ImageTexture, out materialImage2).CheckStatus();
-            Rpr.MaterialNodeSetInputImageDataByKey(materialImage2, MaterialNodeInput.InputData, image2).CheckStatus();
+            Rpr.MaterialNodeSetInputImageDataByKey(materialImage2, MaterialNodeInput.Data, image2).CheckStatus();
 
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Diffuse, out diffuse5).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(diffuse5, MaterialNodeInput.InputColor, materialImage2).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(diffuse5, MaterialNodeInput.Color, materialImage2).CheckStatus();
 
             // create a Lookup material and define it as a "UV Lookup" meaning the output of this material is the UV from the shape.
             // Lookup nodes are useful to create procedural materials.
             // UV-Lookup are often used to scale textures on shapes.
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.InputLookup, out uv_node).CheckStatus();
-            Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.InputValue, (uint)MaterialNodeLookupValue.Uv).CheckStatus();
+            Rpr.MaterialNodeSetInputUByKey(uv_node, MaterialNodeInput.Value, (uint)MaterialNodeLookupValue.Uv).CheckStatus();
 
             // adjust the texture scale by multiplying the the UV by a constant.
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Arithmetic, out uv_scaled_node).CheckStatus();
-            Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.InputOp, (uint)MaterialNodeArithmeticOperation.OpMul).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.InputColor0, uv_node).CheckStatus();
-            Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.InputColor1, 6.0f, 12.0f, 0.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputUByKey(uv_scaled_node, MaterialNodeInput.Op, (uint)MaterialNodeArithmeticOperation.Mul).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(uv_scaled_node, MaterialNodeInput.Color0, uv_node).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.Color1, 6.0f, 12.0f, 0.0f, 0.0f).CheckStatus();
 
             // apply this modified UV to the image material.
-            Rpr.MaterialNodeSetInputNByKey(materialImage2, MaterialNodeInput.InputUv, uv_scaled_node).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(materialImage2, MaterialNodeInput.Uv, uv_scaled_node).CheckStatus();
 
             Rpr.ShapeSetMaterial(plane, diffuse5).CheckStatus();
         }
@@ -254,7 +254,7 @@ public unsafe class BasicScene : BaseTutorial
         MaterialNode reflection1;
         {
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Reflection, out reflection1).CheckStatus();
-            Rpr.MaterialNodeSetInputFByKey(reflection1, MaterialNodeInput.InputColor, 1.0f, 1.0f, 1.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(reflection1, MaterialNodeInput.Color, 1.0f, 1.0f, 1.0f, 0.0f).CheckStatus();
             Rpr.ShapeSetMaterial(cube_instance, reflection1).CheckStatus();
         }
 
@@ -308,13 +308,13 @@ public unsafe class BasicScene : BaseTutorial
         Rpr.ShapeSetTransform(cube_instance, true, cubeMatrix.ToArray(true)).CheckStatus();
 
         // change scaling of the AMD logo on the floor
-        Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.InputColor1, 10.0f, 20.0f, 0.0f, 0.0f).CheckStatus();
+        Rpr.MaterialNodeSetInputFByKey(uv_scaled_node, MaterialNodeInput.Color1, 10.0f, 20.0f, 0.0f, 0.0f).CheckStatus();
 
         // replace the material on cuve by an emissive one.
         MaterialNode emissive1;
         {
             Rpr.MaterialSystemCreateNode(matsys, MaterialNodeType.Emissive, out emissive1).CheckStatus();
-            Rpr.MaterialNodeSetInputFByKey(emissive1, MaterialNodeInput.InputColor, 6.0f, 3.0f, 0.0f, 0.0f).CheckStatus();
+            Rpr.MaterialNodeSetInputFByKey(emissive1, MaterialNodeInput.Color, 6.0f, 3.0f, 0.0f, 0.0f).CheckStatus();
             Rpr.ShapeSetMaterial(cube, emissive1).CheckStatus();
         }
 

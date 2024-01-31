@@ -1945,121 +1945,121 @@ public enum MaterialNodeType
 public enum MaterialNodeInput
 {
     [Description("RPR_MATERIAL_INPUT_COLOR")]
-    InputColor = 0,
+    Color = 0,
 
     [Description("RPR_MATERIAL_INPUT_COLOR0")]
-    InputColor0 = 1,
+    Color0 = 1,
 
     [Description("RPR_MATERIAL_INPUT_COLOR1")]
-    InputColor1 = 2,
+    Color1 = 2,
 
     [Description("RPR_MATERIAL_INPUT_NORMAL")]
-    InputNormal = 3,
+    Normal = 3,
 
     [Description("RPR_MATERIAL_INPUT_UV")]
-    InputUv = 4,
+    Uv = 4,
 
     [Description("RPR_MATERIAL_INPUT_DATA")]
-    InputData = 5,
+    Data = 5,
 
     [Description("RPR_MATERIAL_INPUT_ROUGHNESS")]
-    InputRoughness = 6,
+    Roughness = 6,
 
     [Description("RPR_MATERIAL_INPUT_IOR")]
-    InputIor = 7,
+    Ior = 7,
 
     [Description("RPR_MATERIAL_INPUT_ROUGHNESS_X")]
-    InputRoughnessX = 8,
+    RoughnessX = 8,
 
     [Description("RPR_MATERIAL_INPUT_ROUGHNESS_Y")]
-    InputRoughnessY = 9,
+    RoughnessY = 9,
 
     [Description("RPR_MATERIAL_INPUT_ROTATION")]
-    InputRotation = 10,
+    Rotation = 10,
 
     [Description("RPR_MATERIAL_INPUT_WEIGHT")]
-    InputWeight = 11,
+    Weight = 11,
 
     [Description("RPR_MATERIAL_INPUT_OP")]
-    InputOp = 12,
+    Op = 12,
 
     [Description("RPR_MATERIAL_INPUT_INVEC")]
-    InputInvec = 13,
+    Invec = 13,
 
     [Description("RPR_MATERIAL_INPUT_UV_SCALE")]
-    InputUvScale = 14,
+    UvScale = 14,
 
     [Description("RPR_MATERIAL_INPUT_VALUE")]
-    InputValue = 15,
+    Value = 15,
 
     [Description("RPR_MATERIAL_INPUT_REFLECTANCE")]
-    InputReflectance = 16,
+    Reflectance = 16,
 
     [Description("RPR_MATERIAL_INPUT_SCALE")]
-    InputScale = 17,
+    Scale = 17,
 
     [Description("RPR_MATERIAL_INPUT_SCATTERING")]
-    InputScattering = 18,
+    Scattering = 18,
 
     [Description("RPR_MATERIAL_INPUT_ABSORBTION")]
-    InputAbsorbtion = 19,
+    Absorbtion = 19,
 
     [Description("RPR_MATERIAL_INPUT_EMISSION")]
-    InputEmission = 20,
+    Emission = 20,
 
     [Description("RPR_MATERIAL_INPUT_G")]
-    InputG = 21,
+    G = 21,
 
     [Description("RPR_MATERIAL_INPUT_MULTISCATTER")]
-    InputMultiscatter = 22,
+    Multiscatter = 22,
 
     [Description("RPR_MATERIAL_INPUT_COLOR2")]
-    InputColor2 = 23,
+    Color2 = 23,
 
     [Description("RPR_MATERIAL_INPUT_COLOR3")]
-    InputColor3 = 24,
+    Color3 = 24,
 
     [Description("RPR_MATERIAL_INPUT_ANISOTROPIC")]
-    InputAnisotropic = 25,
+    Anisotropic = 25,
 
     [Description("RPR_MATERIAL_INPUT_FRONTFACE")]
-    InputFrontface = 26,
+    Frontface = 26,
 
     [Description("RPR_MATERIAL_INPUT_BACKFACE")]
-    InputBackface = 27,
+    Backface = 27,
 
     [Description("RPR_MATERIAL_INPUT_ORIGIN")]
-    InputOrigin = 28,
+    Origin = 28,
 
     [Description("RPR_MATERIAL_INPUT_ZAXIS")]
-    InputZaxis = 29,
+    Zaxis = 29,
 
     [Description("RPR_MATERIAL_INPUT_XAXIS")]
-    InputXaxis = 30,
+    Xaxis = 30,
 
     [Description("RPR_MATERIAL_INPUT_THRESHOLD")]
-    InputThreshold = 31,
+    Threshold = 31,
 
     [Description("RPR_MATERIAL_INPUT_OFFSET")]
-    InputOffset = 32,
+    Offset = 32,
 
     [Description("RPR_MATERIAL_INPUT_UV_TYPE")]
-    InputUvType = 33,
+    UvType = 33,
 
     [Description("RPR_MATERIAL_INPUT_RADIUS")]
-    InputRadius = 34,
+    Radius = 34,
 
     [Description("RPR_MATERIAL_INPUT_SIDE")]
-    InputSide = 35,
+    Side = 35,
 
     [Description("RPR_MATERIAL_INPUT_CAUSTICS")]
-    InputCaustics = 36,
+    Caustics = 36,
 
     [Description("RPR_MATERIAL_INPUT_TRANSMISSION_COLOR")]
-    InputTransmissionColor = 37,
+    TransmissionColor = 37,
 
     [Description("RPR_MATERIAL_INPUT_THICKNESS")]
-    InputThickness = 38,
+    Thickness = 38,
 
     [Description("RPR_MATERIAL_INPUT_0")]
     Input0 = 39,
@@ -2077,73 +2077,73 @@ public enum MaterialNodeInput
     Input4 = 43,
 
     [Description("RPR_MATERIAL_INPUT_SCHLICK_APPROXIMATION")]
-    InputSchlickApproximation = 44,
+    SchlickApproximation = 44,
 
     [Description("RPR_MATERIAL_INPUT_APPLYSURFACE")]
-    InputApplysurface = 45,
+    Applysurface = 45,
 
     [Description("RPR_MATERIAL_INPUT_TANGENT")]
-    InputTangent = 46,
+    Tangent = 46,
 
     [Description("RPR_MATERIAL_INPUT_DISTRIBUTION")]
-    InputDistribution = 47,
+    Distribution = 47,
 
     [Description("RPR_MATERIAL_INPUT_BASE")]
-    InputBase = 48,
+    Base = 48,
 
     [Description("RPR_MATERIAL_INPUT_TINT")]
-    InputTint = 49,
+    Tint = 49,
 
     [Description("RPR_MATERIAL_INPUT_EXPONENT")]
-    InputExponent = 50,
+    Exponent = 50,
 
     [Description("RPR_MATERIAL_INPUT_AMPLITUDE")]
-    InputAmplitude = 51,
+    Amplitude = 51,
 
     [Description("RPR_MATERIAL_INPUT_PIVOT")]
-    InputPivot = 52,
+    Pivot = 52,
 
     [Description("RPR_MATERIAL_INPUT_POSITION")]
-    InputPosition = 53,
+    Position = 53,
 
     [Description("RPR_MATERIAL_INPUT_AMOUNT")]
-    InputAmount = 54,
+    Amount = 54,
 
     [Description("RPR_MATERIAL_INPUT_AXIS")]
-    InputAxis = 55,
+    Axis = 55,
 
     [Description("RPR_MATERIAL_INPUT_LUMACOEFF")]
-    InputLumacoeff = 56,
+    Lumacoeff = 56,
 
     [Description("RPR_MATERIAL_INPUT_REFLECTIVITY")]
-    InputReflectivity = 57,
+    Reflectivity = 57,
 
     [Description("RPR_MATERIAL_INPUT_EDGE_COLOR")]
-    InputEdgeColor = 58,
+    EdgeColor = 58,
 
     [Description("RPR_MATERIAL_INPUT_VIEW_DIRECTION")]
-    InputViewDirection = 59,
+    ViewDirection = 59,
 
     [Description("RPR_MATERIAL_INPUT_INTERIOR")]
-    InputInterior = 60,
+    Interior = 60,
 
     [Description("RPR_MATERIAL_INPUT_OCTAVES")]
-    InputOctaves = 61,
+    Octaves = 61,
 
     [Description("RPR_MATERIAL_INPUT_LACUNARITY")]
-    InputLacunarity = 62,
+    Lacunarity = 62,
 
     [Description("RPR_MATERIAL_INPUT_DIMINISH")]
-    InputDiminish = 63,
+    Diminish = 63,
 
     [Description("RPR_MATERIAL_INPUT_WRAP_U")]
-    InputWrapU = 64,
+    WrapU = 64,
 
     [Description("RPR_MATERIAL_INPUT_WRAP_V")]
-    InputWrapV = 65,
+    WrapV = 65,
 
     [Description("RPR_MATERIAL_INPUT_WRAP_W")]
-    InputWrapW = 66,
+    WrapW = 66,
 
     [Description("RPR_MATERIAL_INPUT_5")]
     Input5 = 67,
@@ -2179,258 +2179,256 @@ public enum MaterialNodeInput
     Input15 = 77,
 
     [Description("RPR_MATERIAL_INPUT_DIFFUSE_RAMP")]
-    InputDiffuseRamp = 78,
+    DiffuseRamp = 78,
 
     [Description("RPR_MATERIAL_INPUT_SHADOW")]
-    InputShadow = 79,
+    Shadow = 79,
 
     [Description("RPR_MATERIAL_INPUT_MID")]
-    InputMid = 80,
+    Mid = 80,
 
     [Description("RPR_MATERIAL_INPUT_HIGHLIGHT")]
-    InputHighlight = 81,
+    Highlight = 81,
 
     [Description("RPR_MATERIAL_INPUT_POSITION1")]
-    InputPosition1 = 82,
+    Position1 = 82,
 
     [Description("RPR_MATERIAL_INPUT_POSITION2")]
-    InputPosition2 = 83,
+    Position2 = 83,
 
     [Description("RPR_MATERIAL_INPUT_RANGE1")]
-    InputRange1 = 84,
+    Range1 = 84,
 
     [Description("RPR_MATERIAL_INPUT_RANGE2")]
-    InputRange2 = 85,
+    Range2 = 85,
 
     [Description("RPR_MATERIAL_INPUT_INTERPOLATION")]
-    InputInterpolation = 86,
+    Interpolation = 86,
 
     [Description("RPR_MATERIAL_INPUT_RANDOMNESS")]
-    InputRandomness = 87,
+    Randomness = 87,
 
     [Description("RPR_MATERIAL_INPUT_DIMENSION")]
-    InputDimension = 88,
+    Dimension = 88,
 
     [Description("RPR_MATERIAL_INPUT_OUTTYPE")]
-    InputOuttype = 89,
+    Outtype = 89,
 
     [Description("RPR_MATERIAL_INPUT_DENSITY")]
-    InputDensity = 90,
+    Density = 90,
 
     [Description("RPR_MATERIAL_INPUT_DENSITYGRID")]
-    InputDensitygrid = 91,
+    Densitygrid = 91,
 
     [Description("RPR_MATERIAL_INPUT_DISPLACEMENT")]
-    InputDisplacement = 92,
+    Displacement = 92,
 
     [Description("RPR_MATERIAL_INPUT_TEMPERATURE")]
-    InputTemperature = 93,
+    Temperature = 93,
 
     [Description("RPR_MATERIAL_INPUT_KELVIN")]
-    InputKelvin = 94,
+    Kelvin = 94,
 
     [Description("RPR_MATERIAL_INPUT_EXTINCTION")]
-    InputExtinction = 95,
+    Extinction = 95,
 
     [Description("RPR_MATERIAL_INPUT_THIN_FILM")]
-    InputThinFilm = 96,
+    ThinFilm = 96,
 
     [Description("RPR_MATERIAL_INPUT_TOP")]
-    InputTop = 97,
+    Top = 97,
 
     [Description("RPR_MATERIAL_INPUT_HIGHLIGHT2")]
-    InputHighlight2 = 98,
+    Highlight2 = 98,
 
     [Description("RPR_MATERIAL_INPUT_SHADOW2")]
-    InputShadow2 = 99,
+    Shadow2 = 99,
 
     [Description("RPR_MATERIAL_INPUT_POSITION_SHADOW")]
-    InputPositionShadow = 100,
+    PositionShadow = 100,
 
     [Description("RPR_MATERIAL_INPUT_POSITION_HIGHLIGHT")]
-    InputPositionHighlight = 101,
+    PositionHighlight = 101,
 
     [Description("RPR_MATERIAL_INPUT_RANGE_SHADOW")]
-    InputRangeShadow = 102,
+    RangeShadow = 102,
 
     [Description("RPR_MATERIAL_INPUT_RANGE_HIGHLIGHT")]
-    InputRangeHighlight = 103,
+    RangeHighlight = 103,
 
     [Description("RPR_MATERIAL_INPUT_TOON_5_COLORS")]
-    InputToon5Colors = 104,
+    Toon5Colors = 104,
 
     [Description("RPR_MATERIAL_INPUT_X")]
-    InputX = 105,
+    X = 105,
 
     [Description("RPR_MATERIAL_INPUT_Y")]
-    InputY = 106,
+    Y = 106,
 
     [Description("RPR_MATERIAL_INPUT_Z")]
-    InputZ = 107,
+    Z = 107,
 
     [Description("RPR_MATERIAL_INPUT_W")]
-    InputW = 108,
+    W = 108,
 
     [Description("RPR_MATERIAL_INPUT_LIGHT")]
-    InputLight = 109,
+    Light = 109,
 
     [Description("RPR_MATERIAL_INPUT_MID_IS_ALBEDO")]
-    InputMidIsAlbedo = 110,
+    MidIsAlbedo = 110,
 
     [Description("RPR_MATERIAL_INPUT_SAMPLES")]
-    InputSamples = 111,
+    Samples = 111,
 
     [Description("RPR_MATERIAL_INPUT_BASE_NORMAL")]
-    InputBaseNormal = 112,
+    BaseNormal = 112,
 
     [Description("RPR_MATERIAL_INPUT_UBER_DIFFUSE_COLOR")]
-    InputUberDiffuseColor = 2320,
+    UberDiffuseColor = 2320,
 
     [Description("RPR_MATERIAL_INPUT_UBER_DIFFUSE_WEIGHT")]
-    InputUberDiffuseWeight = 2343,
+    UberDiffuseWeight = 2343,
 
     [Description("RPR_MATERIAL_INPUT_UBER_DIFFUSE_ROUGHNESS")]
-    InputUberDiffuseRoughness = 2321,
+    UberDiffuseRoughness = 2321,
 
     [Description("RPR_MATERIAL_INPUT_UBER_DIFFUSE_NORMAL")]
-    InputUberDiffuseNormal = 2322,
+    UberDiffuseNormal = 2322,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_COLOR")]
-    InputUberReflectionColor = 2323,
+    UberReflectionColor = 2323,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_WEIGHT")]
-    InputUberReflectionWeight = 2344,
+    UberReflectionWeight = 2344,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_ROUGHNESS")]
-    InputUberReflectionRoughness = 2324,
+    UberReflectionRoughness = 2324,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_ANISOTROPY")]
-    InputUberReflectionAnisotropy = 2325,
+    UberReflectionAnisotropy = 2325,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_ANISOTROPY_ROTATION")]
-    InputUberReflectionAnisotropyRotation = 2326,
+    UberReflectionAnisotropyRotation = 2326,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_MODE")]
-    InputUberReflectionMode = 2327,
+    UberReflectionMode = 2327,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_IOR")]
-    InputUberReflectionIor = 2328,
+    UberReflectionIor = 2328,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_METALNESS")]
-    InputUberReflectionMetalness = 2329,
+    UberReflectionMetalness = 2329,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_NORMAL")]
-    InputUberReflectionNormal = 2345,
+    UberReflectionNormal = 2345,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFLECTION_DIELECTRIC_REFLECTANCE")]
-    InputUberReflectionDielectricReflectance = 2366,
+    UberReflectionDielectricReflectance = 2366,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_COLOR")]
-    InputUberRefractionColor = 2330,
+    UberRefractionColor = 2330,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_WEIGHT")]
-    InputUberRefractionWeight = 2346,
+    UberRefractionWeight = 2346,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_ROUGHNESS")]
-    InputUberRefractionRoughness = 2331,
+    UberRefractionRoughness = 2331,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_IOR")]
-    InputUberRefractionIor = 2332,
+    UberRefractionIor = 2332,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_NORMAL")]
-    InputUberRefractionNormal = 2347,
+    UberRefractionNormal = 2347,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_THIN_SURFACE")]
-    InputUberRefractionThinSurface = 2333,
+    UberRefractionThinSurface = 2333,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_ABSORPTION_COLOR")]
-    InputUberRefractionAbsorptionColor = 2348,
+    UberRefractionAbsorptionColor = 2348,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_ABSORPTION_DISTANCE")]
-    InputUberRefractionAbsorptionDistance = 2349,
+    UberRefractionAbsorptionDistance = 2349,
 
     [Description("RPR_MATERIAL_INPUT_UBER_REFRACTION_CAUSTICS")]
-    InputUberRefractionCaustics = 2350,
+    UberRefractionCaustics = 2350,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_COLOR")]
-    InputUberCoatingColor = 2334,
+    UberCoatingColor = 2334,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_WEIGHT")]
-    InputUberCoatingWeight = 2351,
+    UberCoatingWeight = 2351,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_ROUGHNESS")]
-    InputUberCoatingRoughness = 2335,
+    UberCoatingRoughness = 2335,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_MODE")]
-    InputUberCoatingMode = 2336,
+    UberCoatingMode = 2336,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_IOR")]
-    InputUberCoatingIor = 2337,
+    UberCoatingIor = 2337,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_METALNESS")]
-    InputUberCoatingMetalness = 2338,
+    UberCoatingMetalness = 2338,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_NORMAL")]
-    InputUberCoatingNormal = 2339,
+    UberCoatingNormal = 2339,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_TRANSMISSION_COLOR")]
-    InputUberCoatingTransmissionColor = 2352,
+    UberCoatingTransmissionColor = 2352,
 
     [Description("RPR_MATERIAL_INPUT_UBER_COATING_THICKNESS")]
-    InputUberCoatingThickness = 2353,
+    UberCoatingThickness = 2353,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SHEEN")]
-    InputUberSheen = 2354,
+    UberSheen = 2354,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SHEEN_TINT")]
-    InputUberSheenTint = 2355,
+    UberSheenTint = 2355,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SHEEN_WEIGHT")]
-    InputUberSheenWeight = 2356,
+    UberSheenWeight = 2356,
 
     [Description("RPR_MATERIAL_INPUT_UBER_EMISSION_COLOR")]
-    InputUberEmissionColor = 2340,
+    UberEmissionColor = 2340,
 
     [Description("RPR_MATERIAL_INPUT_UBER_EMISSION_WEIGHT")]
-    InputUberEmissionWeight = 2341,
+    UberEmissionWeight = 2341,
 
     [Description("RPR_MATERIAL_INPUT_UBER_EMISSION_MODE")]
-    InputUberEmissionMode = 2357,
+    UberEmissionMode = 2357,
 
     [Description("RPR_MATERIAL_INPUT_UBER_TRANSPARENCY")]
-    InputUberTransparency = 2342,
+    UberTransparency = 2342,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SSS_SCATTER_COLOR")]
-    InputUberSssScatterColor = 2359,
+    UberSssScatterColor = 2359,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SSS_SCATTER_DISTANCE")]
-    InputUberSssScatterDistance = 2360,
+    UberSssScatterDistance = 2360,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SSS_SCATTER_DIRECTION")]
-    InputUberSssScatterDirection = 2361,
+    UberSssScatterDirection = 2361,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SSS_WEIGHT")]
-    InputUberSssWeight = 2362,
+    UberSssWeight = 2362,
 
     [Description("RPR_MATERIAL_INPUT_UBER_SSS_MULTISCATTER")]
-    InputUberSssMultiscatter = 2363,
+    UberSssMultiscatter = 2363,
 
     [Description("RPR_MATERIAL_INPUT_UBER_BACKSCATTER_WEIGHT")]
-    InputUberBackscatterWeight = 2364,
+    UberBackscatterWeight = 2364,
 
     [Description("RPR_MATERIAL_INPUT_UBER_BACKSCATTER_COLOR")]
-    InputUberBackscatterColor = 2365,
+    UberBackscatterColor = 2365,
 
     [Description("RPR_MATERIAL_INPUT_ADDRESS")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1069:不应复制枚举值", Justification = "<挂起>")]
-    InputAddress = 2366,
+    Address = 2366,
 
     [Description("RPR_MATERIAL_INPUT_TYPE")]
-    InputType = 2367,
+    Type = 2367,
 
     [Description("RPR_MATERIAL_INPUT_UBER_FRESNEL_SCHLICK_APPROXIMATION")]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1069:不应复制枚举值", Justification = "<挂起>")]
-    InputUberFresnelSchlickApproximation = 44
+    UberFresnelSchlickApproximation = 44
 }
 
 public enum MaterialInputRaster
@@ -2499,175 +2497,175 @@ public enum InterpolationMode
 public enum UbermaterialIorMode
 {
     [Description("RPR_UBER_MATERIAL_IOR_MODE_PBR")]
-    MaterialIorModePbr = 1,
+    Pbr = 1,
 
     [Description("RPR_UBER_MATERIAL_IOR_MODE_METALNESS")]
-    MaterialIorModeMetalness = 2
+    Metalness = 2
 }
 
 public enum UbermaterialEmissionMode
 {
     [Description("RPR_UBER_MATERIAL_EMISSION_MODE_SINGLESIDED")]
-    MaterialEmissionModeSinglesided = 1,
+    Singlesided = 1,
 
     [Description("RPR_UBER_MATERIAL_EMISSION_MODE_DOUBLESIDED")]
-    MaterialEmissionModeDoublesided = 2
+    Doublesided = 2
 }
 
 public enum MaterialNodeArithmeticOperation
 {
     [Description("RPR_MATERIAL_NODE_OP_ADD")]
-    OpAdd = 0,
+    Add = 0,
 
     [Description("RPR_MATERIAL_NODE_OP_SUB")]
-    OpSub = 1,
+    Sub = 1,
 
     [Description("RPR_MATERIAL_NODE_OP_MUL")]
-    OpMul = 2,
+    Mul = 2,
 
     [Description("RPR_MATERIAL_NODE_OP_DIV")]
-    OpDiv = 3,
+    Div = 3,
 
     [Description("RPR_MATERIAL_NODE_OP_SIN")]
-    OpSin = 4,
+    Sin = 4,
 
     [Description("RPR_MATERIAL_NODE_OP_COS")]
-    OpCos = 5,
+    Cos = 5,
 
     [Description("RPR_MATERIAL_NODE_OP_TAN")]
-    OpTan = 6,
+    Tan = 6,
 
     [Description("RPR_MATERIAL_NODE_OP_SELECT_X")]
-    OpSelectX = 7,
+    SelectX = 7,
 
     [Description("RPR_MATERIAL_NODE_OP_SELECT_Y")]
-    OpSelectY = 8,
+    SelectY = 8,
 
     [Description("RPR_MATERIAL_NODE_OP_SELECT_Z")]
-    OpSelectZ = 9,
+    SelectZ = 9,
 
     [Description("RPR_MATERIAL_NODE_OP_COMBINE")]
-    OpCombine = 10,
+    Combine = 10,
 
     [Description("RPR_MATERIAL_NODE_OP_DOT3")]
-    OpDot3 = 11,
+    Dot3 = 11,
 
     [Description("RPR_MATERIAL_NODE_OP_CROSS3")]
-    OpCross3 = 12,
+    Cross3 = 12,
 
     [Description("RPR_MATERIAL_NODE_OP_LENGTH3")]
-    OpLength3 = 13,
+    Length3 = 13,
 
     [Description("RPR_MATERIAL_NODE_OP_NORMALIZE3")]
-    OpNormalize3 = 14,
+    Normalize3 = 14,
 
     [Description("RPR_MATERIAL_NODE_OP_POW")]
-    OpPow = 15,
+    Pow = 15,
 
     [Description("RPR_MATERIAL_NODE_OP_ACOS")]
-    OpAcos = 16,
+    Acos = 16,
 
     [Description("RPR_MATERIAL_NODE_OP_ASIN")]
-    OpAsin = 17,
+    Asin = 17,
 
     [Description("RPR_MATERIAL_NODE_OP_ATAN")]
-    OpAtan = 18,
+    Atan = 18,
 
     [Description("RPR_MATERIAL_NODE_OP_AVERAGE_XYZ")]
-    OpAverageXyz = 19,
+    AverageXyz = 19,
 
     [Description("RPR_MATERIAL_NODE_OP_AVERAGE")]
-    OpAverage = 20,
+    Average = 20,
 
     [Description("RPR_MATERIAL_NODE_OP_MIN")]
-    OpMin = 21,
+    Min = 21,
 
     [Description("RPR_MATERIAL_NODE_OP_MAX")]
-    OpMax = 22,
+    Max = 22,
 
     [Description("RPR_MATERIAL_NODE_OP_FLOOR")]
-    OpFloor = 23,
+    Floor = 23,
 
     [Description("RPR_MATERIAL_NODE_OP_MOD")]
-    OpMod = 24,
+    Mod = 24,
 
     [Description("RPR_MATERIAL_NODE_OP_ABS")]
-    OpAbs = 25,
+    Abs = 25,
 
     [Description("RPR_MATERIAL_NODE_OP_SHUFFLE_YZWX")]
-    OpShuffleYzwx = 26,
+    ShuffleYzwx = 26,
 
     [Description("RPR_MATERIAL_NODE_OP_SHUFFLE_ZWXY")]
-    OpShuffleZwxy = 27,
+    ShuffleZwxy = 27,
 
     [Description("RPR_MATERIAL_NODE_OP_SHUFFLE_WXYZ")]
-    OpShuffleWxyz = 28,
+    ShuffleWxyz = 28,
 
     [Description("RPR_MATERIAL_NODE_OP_MAT_MUL")]
-    OpMatMul = 29,
+    MatMul = 29,
 
     [Description("RPR_MATERIAL_NODE_OP_SELECT_W")]
-    OpSelectW = 30,
+    SelectW = 30,
 
     [Description("RPR_MATERIAL_NODE_OP_DOT4")]
-    OpDot4 = 31,
+    Dot4 = 31,
 
     [Description("RPR_MATERIAL_NODE_OP_LOG")]
-    OpLog = 32,
+    Log = 32,
 
     [Description("RPR_MATERIAL_NODE_OP_LOWER_OR_EQUAL")]
-    OpLowerOrEqual = 33,
+    LowerOrEqual = 33,
 
     [Description("RPR_MATERIAL_NODE_OP_LOWER")]
-    OpLower = 34,
+    Lower = 34,
 
     [Description("RPR_MATERIAL_NODE_OP_GREATER_OR_EQUAL")]
-    OpGreaterOrEqual = 35,
+    GreaterOrEqual = 35,
 
     [Description("RPR_MATERIAL_NODE_OP_GREATER")]
-    OpGreater = 36,
+    Greater = 36,
 
     [Description("RPR_MATERIAL_NODE_OP_EQUAL")]
-    OpEqual = 37,
+    Equal = 37,
 
     [Description("RPR_MATERIAL_NODE_OP_NOT_EQUAL")]
-    OpNotEqual = 38,
+    NotEqual = 38,
 
     [Description("RPR_MATERIAL_NODE_OP_AND")]
-    OpAnd = 39,
+    And = 39,
 
     [Description("RPR_MATERIAL_NODE_OP_OR")]
-    OpOr = 40,
+    Or = 40,
 
     [Description("RPR_MATERIAL_NODE_OP_TERNARY")]
-    OpTernary = 41,
+    Ternary = 41,
 
     [Description("RPR_MATERIAL_NODE_OP_EXP")]
-    OpExp = 42,
+    Exp = 42,
 
     [Description("RPR_MATERIAL_NODE_OP_ROTATE2D")]
-    OpRotate2d = 43,
+    Rotate2d = 43,
 
     [Description("RPR_MATERIAL_NODE_OP_ROTATE3D")]
-    OpRotate3d = 44,
+    Rotate3d = 44,
 
     [Description("RPR_MATERIAL_NODE_OP_NOP")]
-    OpNop = 45,
+    Nop = 45,
 
     [Description("RPR_MATERIAL_NODE_OP_CEIL")]
-    OpCeil = 4138,
+    Ceil = 4138,
 
     [Description("RPR_MATERIAL_NODE_OP_ROUND")]
-    OpRound = 4139,
+    Round = 4139,
 
     [Description("RPR_MATERIAL_NODE_OP_SIGN")]
-    OpSign = 4140,
+    Sign = 4140,
 
     [Description("RPR_MATERIAL_NODE_OP_SQRT")]
-    OpSqrt = 4143,
+    Sqrt = 4143,
 
     [Description("RPR_MATERIAL_NODE_OP_CLAMP")]
-    OpClamp = 4149
+    Clamp = 4149
 }
 
 public enum MaterialNodeLookupValue

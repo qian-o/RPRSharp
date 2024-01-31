@@ -98,8 +98,8 @@ public class TransformMotionBlur : BaseTutorial
             Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.Diffuse, out diffuse1).CheckStatus();
             Rpr.ContextCreateImageFromFile(context, textestFile, out img).CheckStatus();
             Rpr.MaterialSystemCreateNode(materialSystem, MaterialNodeType.ImageTexture, out imgSampler).CheckStatus();
-            Rpr.MaterialNodeSetInputImageDataByKey(imgSampler, MaterialNodeInput.InputData, img).CheckStatus();
-            Rpr.MaterialNodeSetInputNByKey(diffuse1, MaterialNodeInput.InputColor, imgSampler).CheckStatus();
+            Rpr.MaterialNodeSetInputImageDataByKey(imgSampler, MaterialNodeInput.Data, img).CheckStatus();
+            Rpr.MaterialNodeSetInputNByKey(diffuse1, MaterialNodeInput.Color, imgSampler).CheckStatus();
             Rpr.ShapeSetMaterial(teapot01, diffuse1).CheckStatus();
         }
 
