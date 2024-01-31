@@ -5,11 +5,6 @@ namespace RPRSharp;
 
 public static unsafe partial class Rpr
 {
-    public const int ObjectName = 0x777777;
-    public const int ObjectUniqueId = 0x777778;
-    public const int ObjectCustomPtr = 0x777779;
-    public const int InstanceParentShape = 0x1601;
-
     public static int RegisterPlugin(string path)
     {
         char* ptr1 = (char*)StringToPtr(path);

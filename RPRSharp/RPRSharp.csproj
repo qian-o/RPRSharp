@@ -7,4 +7,22 @@
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>$(AssemblyName)</Title>
+		<Version>3.1.5-alpha</Version>
+		<Authors>qian-o</Authors>
+		<Description>Radeon Pro Render ported to C# bindings.</Description>
+		<RepositoryUrl>https://github.com/qian-o/RPRSharp</RepositoryUrl>
+		<PackageTags>RadeonProRender;RPR</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
 </Project>
