@@ -16,6 +16,33 @@ namespace Tutorials.Helpers;
 
 public unsafe class RprHelper
 {
+    static RprHelper()
+    {
+        ContextProperties =
+        [
+            new ContextProperties((int)ContextInfo.PRECOMPILED_BINARY_PATH),
+            new ContextProperties(Path.Combine("AMD Radeon ProRender SDK", "hipbin")),
+            new ContextProperties(0)
+        ];
+
+        Northstar64 = Core.GetPlatform() switch
+        {
+            Platform.CentOS => Path.Combine("AMD Radeon ProRender SDK", "binCentOS7", "libNorthstar64.so"),
+            Platform.Ubuntu => Path.Combine("AMD Radeon ProRender SDK", "binUbuntu20", "libNorthstar64.so"),
+            Platform.MacOS => Path.Combine("AMD Radeon ProRender SDK", "binMacOS", "libNorthstar64.dylib"),
+            Platform.Windows => Path.Combine("AMD Radeon ProRender SDK", "binWin64", "Northstar64.dll"),
+            _ => string.Empty,
+        };
+    }
+
+    public static ApiVersion ApiVersion => new(3, 1, 5);
+
+    public static CreationFlags ContextCreationFlags => CreationFlags.ENABLE_GPU1;
+
+    public static ContextProperties[] ContextProperties { get; }
+
+    public static string Northstar64 { get; }
+
     public static Vertex[] Cube =>
     [
         new Vertex { Position = new Vector3(-1.0f, 1.0f, -1.0f), Normal = new Vector3(0.0f, 1.0f, 0.0f), TexCoord = new Vector2(0.0f, 0.0f) },

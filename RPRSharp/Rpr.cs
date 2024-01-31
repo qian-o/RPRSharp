@@ -5,26 +5,9 @@ namespace RPRSharp;
 
 public static unsafe partial class Rpr
 {
-    public const int VersionMajor = 3;
-
-    public const int VersionMinor = 1;
-
-    public const int VersionRevision = 5;
-
-    public const uint VersionBuild = 0x92dd2edd;
-
-    public const int VersionMajorMinorRevision = 0x00300105;
-
-    public const int ApiVersion = VersionMajorMinorRevision;
-
-    public const uint ApiVersionMinor = VersionBuild;
-
     public const int ObjectName = 0x777777;
-
     public const int ObjectUniqueId = 0x777778;
-
     public const int ObjectCustomPtr = 0x777779;
-
     public const int InstanceParentShape = 0x1601;
 
     public static int RegisterPlugin(string path)
@@ -38,15 +21,17 @@ public static unsafe partial class Rpr
         return pluginId;
     }
 
-    public static Status CreateContext(uint apiVersion, int[] pluginIDs, long pluginCount, CreationFlags creationFlags, ContextProperties[] props, string cachePath, out Context context)
+    public static Status CreateContext(ApiVersion apiVersion, int[] pluginIDs, long pluginCount, CreationFlags creationFlags, ContextProperties[] props, string cachePath, out Context context)
     {
+        int version = apiVersion.Major << 20 | apiVersion.Minor << 8 | apiVersion.Revision;
+
         fixed (int* ptr1 = pluginIDs)
         fixed (ContextProperties* ptr2 = props)
         fixed (Context* ptr3 = &context)
         {
             byte* ptr4 = (byte*)SilkMarshal.StringToPtr(cachePath);
 
-            Status status = rprCreateContext(apiVersion, ptr1, pluginCount, creationFlags, ptr2, ptr4, ptr3);
+            Status status = rprCreateContext((uint)version, ptr1, pluginCount, creationFlags, ptr2, ptr4, ptr3);
 
             SilkMarshal.Free((nint)ptr4);
 
