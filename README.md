@@ -9,6 +9,32 @@ The interface code has been double-checked on the [RadeonProRender_v2.h](https:/
 
 The code is currently in the early stages of development, and it cannot be guaranteed that all interfaces are functional. I will continue to improve the code based on the tutorial examples provided by RadeonProRenderSDK, and I also welcome contributions from the community.
 
+## Usage:
+Call the Core.Init() function in the program entry point and provide a callback function for registering dependency libraries.
+```csharp
+static void Main(string[] _)
+{
+    Core.Init(RegisterLibrary);
+
+    // code
+    Rpr.Create....;
+}
+
+private static void RegisterLibrary(Platform platform, out string rprPath)
+{
+    string dir = Path.Combine("AMD Radeon ProRender SDK");
+
+    rprPath = platform switch
+    {
+        Platform.CentOS => Path.Combine(dir, "binCentOS7", "libRadeonProRender64.so"),
+        Platform.Ubuntu => Path.Combine(dir, "binUbuntu20", "libRadeonProRender64.so"),
+        Platform.MacOS => Path.Combine(dir, "binMacOS", "libRadeonProRender64.dylib"),
+        Platform.Windows => Path.Combine(dir, "binWin64", "RadeonProRender64.dll"),
+        _ => string.Empty,
+    };
+}
+```
+## Example:
 00_context_creation
 ![image](https://github.com/qian-o/RPRSharp/assets/84434846/b0ba6bca-a2ba-479e-9052-5a9f8372a4cb)
 
