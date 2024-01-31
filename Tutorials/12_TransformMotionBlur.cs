@@ -20,7 +20,7 @@ public class TransformMotionBlur : BaseTutorial
         Console.WriteLine("-- Radeon ProRender SDK Demo --");
 
         // Create the RPR context
-        int pluginID = Rpr.RegisterPlugin(Core.Northstar64);
+        int pluginID = Rpr.RegisterPlugin(Northstar64);
 
         if (pluginID == -1)
         {
@@ -29,7 +29,7 @@ public class TransformMotionBlur : BaseTutorial
         }
 
         int[] plugins = [pluginID];
-        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
+        Rpr.CreateContext(Rpr.ApiVersion, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
         Rpr.ContextSetActivePlugin(context, plugins[0]).CheckStatus();
 
         Console.WriteLine("Context successfully created.");

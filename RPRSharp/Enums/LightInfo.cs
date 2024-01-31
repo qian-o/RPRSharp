@@ -10,9 +10,9 @@ public enum LightInfo : int
     GROUP_ID = 0x805,
     RENDER_LAYER_LIST = 0x806,
     VISIBILITY_LIGHT = 0x807,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR,
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr,
 
     /* point light */
     POINT_LIGHT_RADIANT_POWER = 0x804,

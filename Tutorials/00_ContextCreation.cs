@@ -9,7 +9,7 @@ public unsafe class ContextCreation : BaseTutorial
     {
         Console.WriteLine("Radeon ProRender SDK simple context creation tutorial.");
 
-        int pluginID = Rpr.RegisterPlugin(Core.Northstar64);
+        int pluginID = Rpr.RegisterPlugin(Northstar64);
 
         if (pluginID == -1)
         {
@@ -21,7 +21,7 @@ public unsafe class ContextCreation : BaseTutorial
 
         // Create context using a single GPU
         // note that multiple GPUs can be enabled for example with creation_flags = RPR_CREATION_FLAGS_ENABLE_GPU0 | RPR_CREATION_FLAGS_ENABLE_GPU1
-        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
+        Rpr.CreateContext(Rpr.ApiVersion, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
 
         // Set the active plugin.
         Rpr.ContextSetActivePlugin(context, plugins[0]).CheckStatus();

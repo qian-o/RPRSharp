@@ -18,7 +18,7 @@ public enum HeteroVolumeParameter : int
     ALBEDO_SCALE = 0x745,
     DENSITY_SCALE = 0x746,
     EMISSION_SCALE = 0x747,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

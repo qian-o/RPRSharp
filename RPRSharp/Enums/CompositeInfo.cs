@@ -19,7 +19,7 @@ public enum CompositeInfo : int
     GAMMA_CORRECTION_INPUT_COLOR = 0x0c,
     LUT_INPUT_LUT = 0x0d,
     LUT_INPUT_COLOR = 0x0e,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

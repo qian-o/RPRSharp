@@ -50,7 +50,7 @@ public enum ShapeInfo : int
     VISIBILITY_RECEIVE_SHADOW = 0x430,
     PRIMVARS = 0x431,
     ENVIRONMENT_LIGHT = 0x432,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

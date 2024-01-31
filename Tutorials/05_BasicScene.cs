@@ -13,7 +13,7 @@ public unsafe class BasicScene : BaseTutorial
         // Rpr.ContextSetParameterByKey1u(default, ContextInfo.TRACING_ENABLED, 1);
 
         // Create the RPR context
-        int pluginID = Rpr.RegisterPlugin(Core.Northstar64);
+        int pluginID = Rpr.RegisterPlugin(Northstar64);
 
         if (pluginID == -1)
         {
@@ -22,7 +22,7 @@ public unsafe class BasicScene : BaseTutorial
         }
 
         int[] plugins = [pluginID];
-        Rpr.CreateContext(Rpr.API_VERSION, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
+        Rpr.CreateContext(Rpr.ApiVersion, plugins, plugins.Length, ContextCreationFlags, ContextProperties, "", out Context context).CheckStatus();
         Rpr.ContextSetActivePlugin(context, plugins[0]).CheckStatus();
 
         Console.WriteLine("Context successfully created.");

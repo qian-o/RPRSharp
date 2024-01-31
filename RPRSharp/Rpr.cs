@@ -5,17 +5,27 @@ namespace RPRSharp;
 
 public static unsafe partial class Rpr
 {
-    public const int VERSION_MAJOR = 3;
-    public const int VERSION_MINOR = 1;
-    public const int VERSION_REVISION = 5;
-    public const uint VERSION_BUILD = 0x92dd2edd;
-    public const int VERSION_MAJOR_MINOR_REVISION = 0x00300105;
-    public const int API_VERSION = VERSION_MAJOR_MINOR_REVISION;
-    public const uint API_VERSION_MINOR = VERSION_BUILD;
-    public const int OBJECT_NAME = 0x777777;
-    public const int OBJECT_UNIQUE_ID = 0x777778;
-    public const int OBJECT_CUSTOM_PTR = 0x777779;
-    public const int INSTANCE_PARENT_SHAPE = 0x1601;
+    public const int VersionMajor = 3;
+
+    public const int VersionMinor = 1;
+
+    public const int VersionRevision = 5;
+
+    public const uint VersionBuild = 0x92dd2edd;
+
+    public const int VersionMajorMinorRevision = 0x00300105;
+
+    public const int ApiVersion = VersionMajorMinorRevision;
+
+    public const uint ApiVersionMinor = VersionBuild;
+
+    public const int ObjectName = 0x777777;
+
+    public const int ObjectUniqueId = 0x777778;
+
+    public const int ObjectCustomPtr = 0x777779;
+
+    public const int InstanceParentShape = 0x1601;
 
     public static int RegisterPlugin(string path)
     {

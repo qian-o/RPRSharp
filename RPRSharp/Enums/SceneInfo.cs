@@ -18,7 +18,7 @@ public enum SceneInfo : int
     CURVE_LIST = 0x710,
     CURVE_COUNT = 0x711,
     ENVIRONMENT_LIGHT = 0x712,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

@@ -13,6 +13,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<None Include="AMD Radeon ProRender SDK\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<None Include="Resources\**">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>

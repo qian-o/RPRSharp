@@ -13,7 +13,7 @@ public enum GridParameter : int
     INDICES = 0x936,
     INDICES_NUMBER = 0x937,
     INDICES_TOPOLOGY = 0x938,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

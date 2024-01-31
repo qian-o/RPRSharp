@@ -31,7 +31,7 @@ public enum CameraInfo : int
     MOTION_TRANSFORMS = 0x218,
     POST_SCALE = 0x219,
     UV_DISTORTION = 0x21A,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

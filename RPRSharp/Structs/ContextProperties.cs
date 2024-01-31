@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using Silk.NET.Core.Native;
 
 namespace RPRSharp;
 
@@ -18,6 +17,6 @@ public struct ContextProperties
 
     public ContextProperties(string prop)
     {
-        Handle = SilkMarshal.StringToPtr(prop);
+        Handle = Marshal.StringToHGlobalAnsi(prop);
     }
 }

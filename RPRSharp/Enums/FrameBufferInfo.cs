@@ -12,7 +12,7 @@ public enum FrameBufferInfo : int
     GL_MIPLEVEL = 0x1305,
     GL_TEXTURE = 0x1306,
     LPE = 0x1307,
-    NAME = Rpr.OBJECT_NAME,
-    UNIQUE_ID = Rpr.OBJECT_UNIQUE_ID,
-    CUSTOM_PTR = Rpr.OBJECT_CUSTOM_PTR
+    NAME = Rpr.ObjectName,
+    UNIQUE_ID = Rpr.ObjectUniqueId,
+    CUSTOM_PTR = Rpr.ObjectCustomPtr
 }

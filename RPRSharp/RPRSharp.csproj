@@ -11,10 +11,4 @@
 		<PackageReference Include="Silk.NET.Core" Version="2.20.0" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Include="AMD Radeon ProRender SDK\**">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
 </Project>
