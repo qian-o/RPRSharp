@@ -349,11 +349,11 @@ public static unsafe partial class Rpr
         }
     }
 
-    public static Status ContextCreateMeshEx2(Context context, float* vertices, long numVertices, int vertexStride, float* normals, long numNormals, int normalStride, int* perVertexFlag, long numPerVertexFlags, int perVertexFlagStride, int numberOfTexCoordLayers, float** texcoords, long* numTexcoords, int* texcoordStride, int* vertexIndices, int vidxStride, int* normalIndices, int nidxStride, int** texcoordIndices, int* tidxStride, int* numFaceVertices, long numFaces, MeshInfo meshProperties, out Shape mesh)
+    public static Status ContextCreateMeshEx2(Context context, float* vertices, long numVertices, int vertexStride, float* normals, long numNormals, int normalStride, int* perVertexFlag, long numPerVertexFlags, int perVertexFlagStride, int numberOfTexCoordLayers, float** texcoords, long* numTexcoords, int* texcoordStride, int* vertexIndices, int vidxStride, int* normalIndices, int nidxStride, int** texcoordIndices, int* tidxStride, int* numFaceVertices, long numFaces, MeshInfo* meshProperties, out Shape mesh)
     {
         fixed (Shape* ptr1 = &mesh)
         {
-            return rprContextCreateMeshEx2(context, vertices, numVertices, vertexStride, normals, numNormals, normalStride, perVertexFlag, numPerVertexFlags, perVertexFlagStride, numberOfTexCoordLayers, texcoords, numTexcoords, texcoordStride, vertexIndices, vidxStride, normalIndices, nidxStride, texcoordIndices, tidxStride, numFaceVertices, numFaces, &meshProperties, ptr1);
+            return rprContextCreateMeshEx2(context, vertices, numVertices, vertexStride, normals, numNormals, normalStride, perVertexFlag, numPerVertexFlags, perVertexFlagStride, numberOfTexCoordLayers, texcoords, numTexcoords, texcoordStride, vertexIndices, vidxStride, normalIndices, nidxStride, texcoordIndices, tidxStride, numFaceVertices, numFaces, meshProperties, ptr1);
         }
     }
 

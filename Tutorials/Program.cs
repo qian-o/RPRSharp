@@ -8,7 +8,7 @@ internal class Program
     {
         Core.Init(RegisterLibrary);
 
-        new TransformMotionBlur().Run();
+        new DeformationMotionBlur().Run();
     }
 
     private static void RegisterLibrary(Platform platform, out string rprPath)

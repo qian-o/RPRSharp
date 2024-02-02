@@ -37,7 +37,7 @@ public unsafe class RprHelper
 
     public static ApiVersion ApiVersion => new(3, 1, 5);
 
-    public static CreationFlags ContextCreationFlags => CreationFlags.EnableGpu1;
+    public static CreationFlags ContextCreationFlags => CreationFlags.EnableGpu0;
 
     public static ContextProperties[] ContextProperties { get; }
 
