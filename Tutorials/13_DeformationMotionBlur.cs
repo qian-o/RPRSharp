@@ -13,7 +13,6 @@ public unsafe class DeformationMotionBlur : BaseTutorial
 {
     public override void Run()
     {
-
         // for Debugging you can enable Radeon ProRender API trace
         // set this before any RPR API calls
         // Rpr.ContextSetParameterByKey1u(default, ContextInfo.TRACING_ENABLED, 1);
@@ -192,7 +191,7 @@ public unsafe class DeformationMotionBlur : BaseTutorial
                                              numFaceVerticesPtr, 12, meshPropertiesPtr, out cube).CheckStatus();
                 }
             }
-        
+
             // Add cube to the scene
             Rpr.SceneAttachShape(scene, cube).CheckStatus();
 
@@ -277,7 +276,7 @@ public unsafe class DeformationMotionBlur : BaseTutorial
 
         // Render the scene
         Rpr.ContextSetParameterByKey1f(context, ContextInfo.DisplayGamma, 2.2f).CheckStatus();
-        Rpr.ContextSetParameterByKey1u(context, ContextInfo.Iterations, 200).CheckStatus();
+        Rpr.ContextSetParameterByKey1u(context, ContextInfo.Iterations, RprHelper.NumIterations).CheckStatus();
         Rpr.FrameBufferClear(frame_buffer).CheckStatus();
         Rpr.ContextRender(context).CheckStatus();
         Rpr.ContextResolveFrameBuffer(context, frame_buffer, frame_buffer_resolved, false).CheckStatus();

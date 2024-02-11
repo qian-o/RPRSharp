@@ -8,7 +8,7 @@ internal class Program
     {
         Core.Init(RegisterLibrary);
 
-        new DeformationMotionBlur().Run();
+        new CameraDof().Run();
     }
 
     private static void RegisterLibrary(Platform platform, out string rprPath)

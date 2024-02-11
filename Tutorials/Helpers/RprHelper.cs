@@ -16,6 +16,9 @@ namespace Tutorials.Helpers;
 
 public unsafe class RprHelper
 {
+    // Number of iterations for rendering
+    public const int NumIterations = 200;
+
     static RprHelper()
     {
         ContextProperties =
@@ -37,7 +40,7 @@ public unsafe class RprHelper
 
     public static ApiVersion ApiVersion => new(3, 1, 5);
 
-    public static CreationFlags ContextCreationFlags => CreationFlags.EnableGpu0;
+    public static CreationFlags ContextCreationFlags => CreationFlags.EnableGpu1;
 
     public static ContextProperties[] ContextProperties { get; }
 
