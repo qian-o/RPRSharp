@@ -49,3 +49,7 @@ private static void RegisterLibrary(Platform platform, out string rprPath)
 
 13_deformation_motion_blur
 ![image](https://github.com/qian-o/RPRSharp/assets/84434846/19c331b6-3710-4114-bc1b-192e97220e07)
+
+17_camera_dof
+![image](https://github.com/qian-o/RPRSharp/assets/84434846/34dae8ee-592c-46a2-a479-ef83c5f43034)
+
