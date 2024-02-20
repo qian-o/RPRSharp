@@ -34,22 +34,4 @@ private static void RegisterLibrary(Platform platform, out string rprPath)
     };
 }
 ```
-## Example:
-00_context_creation
-![image](https://github.com/qian-o/RPRSharp/assets/84434846/b0ba6bca-a2ba-479e-9052-5a9f8372a4cb)
-
-03_parameters_enumeration
-![image](https://github.com/qian-o/RPRSharp/assets/84434846/1de4ebff-80d2-40f5-8c4a-c22655958e5e)
-
-05_basic_scene
-![image](https://github.com/qian-o/RPRSharp/assets/84434846/4dfd3749-de1e-49e2-9f7f-1eafaf17bec1)
-
-12_transform_motion_blur
-![image](https://github.com/qian-o/RPRSharp/assets/84434846/366f9571-2fc0-42c7-aea3-de2aefeaf1a6)
-
-13_deformation_motion_blur
-![image](https://github.com/qian-o/RPRSharp/assets/84434846/19c331b6-3710-4114-bc1b-192e97220e07)
-
-17_camera_dof
-![image](https://github.com/qian-o/RPRSharp/assets/84434846/34dae8ee-592c-46a2-a479-ef83c5f43034)
 
